@@ -23,6 +23,11 @@ and deployed and tested on
 ___
 
 ### Configuration and building
+First you may need to import hsenid.sql file into your mysql server and change below files credentials
+
+`/Menuka-Translator/src/main/webapp/WEB-INF/web.xml`
+
+Here you have to give the username and password of your database user.
 
 To deploy this project we need to build it first using maven. so go in side the 
 
