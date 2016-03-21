@@ -27,6 +27,12 @@
 
 
 	<div class="container">
+		<%
+							String s2 = (String) request.getAttribute("Error");
+							if (s2 != null) {
+								out.println(s2);
+							}
+						%>
 
 		<form action="MyServlet">
 			Username : <input type="text" name="username"> <br /> <br>
