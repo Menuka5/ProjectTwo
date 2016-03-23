@@ -40,5 +40,14 @@
         <servlet-name>hi</servlet-name>
         <url-pattern>/GetTranslate</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>hsenid.LogOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
 
 </web-app>

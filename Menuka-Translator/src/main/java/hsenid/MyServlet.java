@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,9 +23,7 @@ import java.sql.SQLException;
 
 public class MyServlet extends HttpServlet {
     /**
-     *
      * @param request
-     *
      * @param resp
      * @throws ServletException
      * @throws IOException
@@ -37,7 +36,9 @@ public class MyServlet extends HttpServlet {
         PreparedStatement pst = null;
         ResultSet rs = null;
         Boolean status = false;
-        String username = request.getParameter("username"); // Getting parameters
+        String username = request.getParameter("username");
+
+        // Getting parameters
         // from index.jsp
         HashClass Hashing = new HashClass();
         try {
@@ -63,7 +64,11 @@ public class MyServlet extends HttpServlet {
                 status = rs.next();
 
                 if (status) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("username", username);
                     view.forward(request, resp);
+
+
                 } else {
                     request.getRequestDispatcher("/index.jsp").forward(request, resp);
                 }
