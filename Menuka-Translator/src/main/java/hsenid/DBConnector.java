@@ -1,5 +1,6 @@
 package hsenid;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,12 +27,15 @@ public class DBConnector {
          */
 
         try {
+            PropertyHandle data = new PropertyHandle();
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(url, username, password); // creating the db connection
+            conn = DriverManager.getConnection(data.getUrl(), data.getDbuser(), data.getPassword()); // creating the db connection
 
         } catch (ClassNotFoundException e) { //Handling the exceptions
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

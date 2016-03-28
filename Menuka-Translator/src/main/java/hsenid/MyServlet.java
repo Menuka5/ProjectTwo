@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +29,7 @@ public class MyServlet extends HttpServlet {
      */
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) {
         resp.setContentType("text/html"); // Set output as html
 
         PreparedStatement pst = null;
@@ -83,6 +82,10 @@ public class MyServlet extends HttpServlet {
                 e.printStackTrace();
             }
         } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
             e.printStackTrace();
         }
 

@@ -18,6 +18,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -36,16 +37,19 @@ public class GetTranslate extends HttpServlet {
      */
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp)
-            throws ServletException, IOException, IllegalArgumentException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws UnsupportedEncodingException {
         /**
          * Here we over ride the doGet method of
          */
         resp.setContentType("text/html"); //  setting the printwriter to html outputs
-        request.setCharacterEncoding("UTF-8"); // Setting unicode as encoding for use languages like japanese
-        resp.setCharacterEncoding("UTF-8");
 
-        PrintWriter out = resp.getWriter();
+                     request.setCharacterEncoding("UTF-8"); // Setting unicode as encoding for use languages like japanese
+
+                     resp.setCharacterEncoding("UTF-8");
+
+
+
+
 
         //Getting relevant parameters from translate.jsp
 
@@ -64,9 +68,14 @@ public class GetTranslate extends HttpServlet {
         // HttpClient call preparing
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(url);
-        HttpResponse response = client.execute(httpGet);
+                 HttpResponse response = null;
+                 try {
+                     response = client.execute(httpGet);
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 }
 
-        int statusCode = response.getStatusLine().getStatusCode();
+                 int statusCode = response.getStatusLine().getStatusCode();
 
         Document doc = null;
 
@@ -102,6 +111,10 @@ public class GetTranslate extends HttpServlet {
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
             } catch (SAXException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 

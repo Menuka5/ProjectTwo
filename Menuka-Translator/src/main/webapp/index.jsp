@@ -4,35 +4,13 @@ pageEncoding="UTF-8" %>
 
 <head>
     <title>Menuka's Login Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
 
-    <style type="text/css">
-        .login {
-            width: 500px;
-            clear: both;
-            margin-left: 25%;
-            margin-top: 15%;
-
-        }
-
-        .login input {
-            width: 80%;
-            clear: both;
-        }
-
-        body {
-            background: url(images/background.png) no-repeat center;
-            background-size: cover;
-            width: 100%;
-            height: 100%;
-        }
-
-        .textclr {
-            color: white;
-        }
-    </style>
 </head>
+<link rel="stylesheet" href="css/bootstrap.min.css" >
+<link rel="stylesheet" href="css/bootstrap.css" >
+<link rel="stylesheet" href="background.css" >
+<link rel="stylesheet" href="index.css" >
 <body class="container">
 
 
