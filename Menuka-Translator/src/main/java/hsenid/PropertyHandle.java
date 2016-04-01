@@ -14,12 +14,13 @@ public class PropertyHandle {
 
     public PropertyHandle() throws IOException {
         Properties configProp = new Properties();
-        InputStream in = this.getClass().getResourceAsStream("/configs/config.config.properties");
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream in = classLoader.getResourceAsStream("config.properties");
         configProp.load(in);
 
-        this.url = configProp.getProperty("db.user");
-        this.dbuser = configProp.getProperty("db.password");
-        this.password = configProp.getProperty("db.url");
+        this.url = configProp.getProperty("db.url");
+        this.dbuser = configProp.getProperty("db.user");
+        this.password = configProp.getProperty("db.password");
     }
 
 
@@ -35,5 +36,13 @@ public class PropertyHandle {
     public String getPassword() {
         return password;
     }
+
+
+ /*   public static void main(String[] args) throws IOException {
+        PropertyHandle propertyHandle = new PropertyHandle();
+        System.out.println(propertyHandle.getUrl());
+        System.out.println(propertyHandle.dbuser);
+        System.out.println(propertyHandle.getPassword());
+    }*/
 }
 

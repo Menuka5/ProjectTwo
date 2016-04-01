@@ -37,7 +37,7 @@ public class GetTranslate extends HttpServlet {
      */
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws UnsupportedEncodingException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
         /**
          * Here we over ride the doGet method of
          */
@@ -59,15 +59,15 @@ public class GetTranslate extends HttpServlet {
 
 //      formatting the the text which want to translated to api friendly format (replacing spaces with %20)
         StrChng chngst = new StrChng();
-        String Modified = chngst.modifiedStr(fromText);
+//        String Modified = chngst.modifiedStr(fromText);
 
 
-        String urlWithKey = "https://translate.yandex.net/api/v1.5/tr/translate?key=trnsl.1.1.20160314T043532Z.7b2cd69323fcafb3.0e2a38f131f947f39dce80a89756c4d03ed5da6a";
-        String url = urlWithKey + "&text=" + Modified + "&lang=" + from + "-" + to; // building the url
-
+//        String urlWithKey = "https://translate.yandex.net/api/v1.5/tr/translate?key=trnsl.1.1.20160314T043532Z.7b2cd69323fcafb3.0e2a38f131f947f39dce80a89756c4d03ed5da6a";
+//        String urlModified = urlWithKey + "&text=" + Modified + "&lang=" + from + "-" + to; // building the url
+        String urlModified = chngst.modifiedUrl(fromText, from, to);
         // HttpClient call preparing
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet httpGet = new HttpGet(url);
+        HttpGet httpGet = new HttpGet(urlModified);
                  HttpResponse response = null;
                  try {
                      response = client.execute(httpGet);
@@ -100,22 +100,22 @@ public class GetTranslate extends HttpServlet {
 //                Manupulation getLang.xml reply to create dynamic select list
 
                 Mapping vlues = new Mapping();
-                String[] cName = vlues.sendMap(from, to);
-                request.setAttribute("fromLan", cName[0]);
-                request.setAttribute("toLan", cName[1]);
-                request.setAttribute("data", vlues.GetData());
+//                String[] cName = vlues.sendMap(from, to);
+//                request.setAttribute("fromLan", cName[0]);
+//                request.setAttribute("toLan", cName[1]);
+//                request.setAttribute("data", vlues.GetData());
 
                 request.getRequestDispatcher("/translate.jsp").forward(request, resp);
 
 
             } catch (ParserConfigurationException e) {
-                e.printStackTrace();
+               e.printStackTrace();
             } catch (SAXException e) {
                 e.printStackTrace();
             } catch (ServletException e) {
-                e.printStackTrace();
+                throw new ServletException();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new IOException();
             }
 
         }

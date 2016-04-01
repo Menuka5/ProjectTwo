@@ -40,4 +40,9 @@ public class HashClass {
         sha1hash = md.digest();
         return convertToHex(sha1hash);
     }
+
+ /*   public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        HashClass tets = new HashClass();
+        System.out.println(tets.SHA1("test123"));
+    }*/
 }

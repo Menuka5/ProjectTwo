@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class LogOut extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
             try {
                 HttpSession session = req.getSession(false);
@@ -21,9 +21,9 @@ public class LogOut extends HttpServlet {
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);
             }
             } catch (ServletException e) {
-                e.printStackTrace();
+               throw new ServletException();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new IOException();
             }
 
 

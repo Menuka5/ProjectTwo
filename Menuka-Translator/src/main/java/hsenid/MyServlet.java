@@ -29,38 +29,35 @@ public class MyServlet extends HttpServlet {
      */
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
         resp.setContentType("text/html"); // Set output as html
 
         PreparedStatement pst = null;
         ResultSet rs = null;
         Boolean status = false;
-        String username = request.getParameter("username");
+
 
         // Getting parameters
         // from index.jsp
         HashClass Hashing = new HashClass();
         try {
-            String password = Hashing.SHA1(request.getParameter("password"));
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
 
             RequestDispatcher view = request.getRequestDispatcher("/translate.jsp");
 
 
             try {
-                DBConnector mydata = (DBConnector) getServletContext().getAttribute("Database"); // Receive the DBConnector object created in MyListener class
-
-                Connection myconn = mydata.getConn();// Receiving the connection
-                pst = myconn.prepareStatement("select * from users where username=? and password=?");
-                Mapping data1 = new Mapping();
-                String[] names = {"Menuka", "Ishan"};
 
 //                Setting attributes which want to send to index.jsp in case of wrong authentications given
-                request.setAttribute("name", names);
+
+
                 request.setAttribute("Error", "You haven't provide valid username or Password!!! ");
-                pst.setString(1, username);
-                pst.setString(2, password);
-                rs = pst.executeQuery(); // executing the query
-                status = rs.next();
+
+
+
+                LoginCheck statusVal = new LoginCheck();
+                status = statusVal.checking(username, password);
 
                 if (status) {
                     HttpSession session = request.getSession(true);
@@ -74,19 +71,13 @@ public class MyServlet extends HttpServlet {
 
             } catch (SQLException e) {
                 e.printStackTrace();
-            } catch (ParserConfigurationException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (SAXException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException();
         } catch (ServletException e) {
-            e.printStackTrace();
+            throw new ServletException();
         }
 
     }

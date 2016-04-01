@@ -1,3 +1,4 @@
+
 package hsenid;
 
 import org.apache.http.HttpEntity;
@@ -13,6 +14,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Mapping {
@@ -51,17 +53,17 @@ public class Mapping {
         }
     }
 
-    public String[] sendMap(String from, String to) {
+/*    public String[] sendMap(String from, String to) {
 
         String[] sent = new String[]{data.get(from), data.get(to)};
 
         return sent;
-    }
+    }*/
 
-    public HashMap GetData() {
+/*    public HashMap GetData() {
 
         return (HashMap) data;
-    }
+    }*/
 
 
     public String[] sendValues() {
@@ -74,6 +76,12 @@ public class Mapping {
         }
         return arr;
 
+    }
+
+    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+        Mapping getVal = new Mapping();
+        String[] tste = getVal.sendValues();
+        System.out.println(Arrays.toString(tste));
     }
 
 }
