@@ -1,12 +1,9 @@
 package hsenid;
 
-import java.io.*;
-import java.util.Enumeration;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Created by hsenid on 3/25/16.
- */
 public class PropertyHandle {
     private String url;
     private String dbuser;
@@ -37,12 +34,5 @@ public class PropertyHandle {
         return password;
     }
 
-
- /*   public static void main(String[] args) throws IOException {
-        PropertyHandle propertyHandle = new PropertyHandle();
-        System.out.println(propertyHandle.getUrl());
-        System.out.println(propertyHandle.dbuser);
-        System.out.println(propertyHandle.getPassword());
-    }*/
 }
 

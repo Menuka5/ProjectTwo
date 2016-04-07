@@ -49,13 +49,7 @@ public class MyServlet extends HttpServlet {
 
             try {
 
-//                Setting attributes which want to send to index.jsp in case of wrong authentications given
-
-
                 request.setAttribute("Error", "You haven't provide valid username or Password!!! ");
-
-
-
                 LoginCheck statusVal = new LoginCheck();
                 status = statusVal.checking(username, password);
 

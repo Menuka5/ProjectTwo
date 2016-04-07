@@ -3,7 +3,7 @@ package hsenid;
 /**
  * Created by Menuka Ishan on 3/21/16.
  */
-public class StrChng {
+public class StringChange {
     /**
      * This class replace the spaces of given string with %20 (space character in html)
      *

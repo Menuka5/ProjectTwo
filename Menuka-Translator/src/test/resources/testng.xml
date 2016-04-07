@@ -3,7 +3,7 @@
     <test name="FirstPro">
         <classes>
             <class name="Testers.HashClassTest"/>
-            <class name="Testers.StrChngTest"/>
+            <class name="Testers.StringChangeTest"/>
             <class name="Testers.LoginCheckTest"/>
             <class name="Testers.PropertyHandleTest"/>
         </classes>

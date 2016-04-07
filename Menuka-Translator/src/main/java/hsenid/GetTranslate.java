@@ -17,12 +17,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
-/**
- *
- */
 public class GetTranslate extends HttpServlet {
     /**
      *
@@ -58,14 +53,9 @@ public class GetTranslate extends HttpServlet {
         String to = request.getParameter("to");
 
 //      formatting the the text which want to translated to api friendly format (replacing spaces with %20)
-        StrChng chngst = new StrChng();
-//        String Modified = chngst.modifiedStr(fromText);
+        StringChange chngst = new StringChange();
 
-
-//        String urlWithKey = "https://translate.yandex.net/api/v1.5/tr/translate?key=trnsl.1.1.20160314T043532Z.7b2cd69323fcafb3.0e2a38f131f947f39dce80a89756c4d03ed5da6a";
-//        String urlModified = urlWithKey + "&text=" + Modified + "&lang=" + from + "-" + to; // building the url
         String urlModified = chngst.modifiedUrl(fromText, from, to);
-        // HttpClient call preparing
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(urlModified);
                  HttpResponse response = null;
@@ -100,11 +90,6 @@ public class GetTranslate extends HttpServlet {
 //                Manupulation getLang.xml reply to create dynamic select list
 
                 Mapping vlues = new Mapping();
-//                String[] cName = vlues.sendMap(from, to);
-//                request.setAttribute("fromLan", cName[0]);
-//                request.setAttribute("toLan", cName[1]);
-//                request.setAttribute("data", vlues.GetData());
-
                 request.getRequestDispatcher("/translate.jsp").forward(request, resp);
 
 

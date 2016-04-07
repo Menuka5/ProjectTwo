@@ -11,6 +11,7 @@ import java.sql.SQLException;
  * I've entered the database parameters to web.xml
  */
 public class MyListener implements ServletContextListener {
+
     /**
      * When Web app starts the MyListener works
      * Then contextInitialized method invokes.

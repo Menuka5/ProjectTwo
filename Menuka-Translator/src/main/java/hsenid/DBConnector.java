@@ -47,12 +47,4 @@ public class DBConnector {
         return conn;
     }
 
-
-/*
-    public static void main(String[] args) throws IOException, SQLException {
-        DBConnector test = new DBConnector("jsjk", "fhsdl", "fggfgrw");
-        if (test.getConn()){
-            System.out.println("worked");
-        }
-    }*/
 }

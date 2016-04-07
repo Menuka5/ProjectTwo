@@ -53,19 +53,6 @@ public class Mapping {
         }
     }
 
-/*    public String[] sendMap(String from, String to) {
-
-        String[] sent = new String[]{data.get(from), data.get(to)};
-
-        return sent;
-    }*/
-
-/*    public HashMap GetData() {
-
-        return (HashMap) data;
-    }*/
-
-
     public String[] sendValues() {
 
         String[] arr = new String[data.size()];
@@ -76,12 +63,6 @@ public class Mapping {
         }
         return arr;
 
-    }
-
-    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-        Mapping getVal = new Mapping();
-        String[] tste = getVal.sendValues();
-        System.out.println(Arrays.toString(tste));
     }
 
 }
