@@ -5,6 +5,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -19,13 +21,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 public class GetTranslate extends HttpServlet {
+    private final static Logger logger = LogManager.getLogger(GetTranslate.class);
+
     /**
-     *
-     * @param request
-     * This is HttpServletRequest instance which we create to transport data to the servlet.
-     * @param resp
-     * This is HttpServletResponse instance which we use to make the modifications like setting Unicode data transferring,
-     * content type setting etc.
+     * @param request This is HttpServletRequest instance which we create to transport data to the servlet.
+     * @param resp    This is HttpServletResponse instance which we use to make the modifications like setting Unicode data transferring,
+     *                content type setting etc.
      * @throws ServletException
      * @throws IOException
      * @throws IllegalArgumentException
@@ -37,14 +38,9 @@ public class GetTranslate extends HttpServlet {
          * Here we over ride the doGet method of
          */
         resp.setContentType("text/html"); //  setting the printwriter to html outputs
+        request.setCharacterEncoding("UTF-8"); // Setting unicode as encoding for use languages like japanese
 
-                     request.setCharacterEncoding("UTF-8"); // Setting unicode as encoding for use languages like japanese
-
-                     resp.setCharacterEncoding("UTF-8");
-
-
-
-
+        resp.setCharacterEncoding("UTF-8");
 
         //Getting relevant parameters from translate.jsp
 
@@ -57,15 +53,17 @@ public class GetTranslate extends HttpServlet {
 
         String urlModified = chngst.modifiedUrl(fromText, from, to);
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet httpGet = new HttpGet(urlModified);
-                 HttpResponse response = null;
-                 try {
-                     response = client.execute(httpGet);
-                 } catch (IOException e) {
-                     e.printStackTrace();
-                 }
+        HttpResponse response = null;
+        try {
+            HttpGet httpGet = new HttpGet(urlModified);
+            response = client.execute(httpGet);
+        } catch (IOException e) {
+            logger.error("GetTranslate IOException HTTPClient" + e);
 
-                 int statusCode = response.getStatusLine().getStatusCode();
+        }
+
+
+        int statusCode = response.getStatusLine().getStatusCode();
 
         Document doc = null;
 
@@ -89,17 +87,19 @@ public class GetTranslate extends HttpServlet {
 
 //                Manupulation getLang.xml reply to create dynamic select list
 
-                Mapping vlues = new Mapping();
                 request.getRequestDispatcher("/translate.jsp").forward(request, resp);
 
 
             } catch (ParserConfigurationException e) {
-               e.printStackTrace();
+                logger.error("GetTranslate ParseConfigurationException!!!" + e);
+
             } catch (SAXException e) {
-                e.printStackTrace();
+                logger.error("GetTranslate SAXException" + e);
             } catch (ServletException e) {
+                logger.error("GetTranslate ServletException" + e);
                 throw new ServletException();
             } catch (IOException e) {
+                logger.error("GetTranslate IOException" + e);
                 throw new IOException();
             }
 

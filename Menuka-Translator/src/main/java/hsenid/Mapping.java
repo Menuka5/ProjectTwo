@@ -1,4 +1,3 @@
-
 package hsenid;
 
 import org.apache.http.HttpEntity;
@@ -6,6 +5,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -14,10 +15,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Mapping {
+    private static final Logger logger = LogManager.getLogger(Mapping.class);
     /**
      * Main task of this class is the handle getLang.xml reply which is given by the yandex.
      */
@@ -36,6 +37,7 @@ public class Mapping {
         Document doc;
 
         if (statusCode == 200) {
+            logger.info("Language list recieved, manupulation started!");
             HttpEntity entity = response.getEntity();
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -50,10 +52,14 @@ public class Mapping {
                 data.put(key, value);
 
             }
+
+        } else {
+            logger.error("Http Connection error, Mapping.java");
         }
     }
 
     public String[] sendValues() {
+        logger.info("Value sending started. Mapping.java");
 
         String[] arr = new String[data.size()];
         int i = 0;

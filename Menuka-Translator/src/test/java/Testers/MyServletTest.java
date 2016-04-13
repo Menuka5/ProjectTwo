@@ -1,10 +1,8 @@
 package Testers;
 
+import hsenid.MyServlet;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import hsenid.MyServlet;
-
-import static org.testng.Assert.*;
 
 /**
  * Created by hsenid on 3/30/16.

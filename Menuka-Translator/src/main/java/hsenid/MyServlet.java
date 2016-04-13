@@ -1,6 +1,7 @@
 package hsenid;
 
-import org.xml.sax.SAXException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +20,8 @@ import java.sql.SQLException;
  */
 
 public class MyServlet extends HttpServlet {
+    private final static Logger logger = LogManager.getLogger(MyServlet.class);
+
     /**
      * @param request
      * @param resp
@@ -43,7 +44,7 @@ public class MyServlet extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-
+            logger.info("received the credentials from the index.jsp ");
             RequestDispatcher view = request.getRequestDispatcher("/translate.jsp");
 
 
@@ -54,23 +55,29 @@ public class MyServlet extends HttpServlet {
                 status = statusVal.checking(username, password);
 
                 if (status) {
+                    logger.info("Access granted to the Traslator page");
                     HttpSession session = request.getSession(true);
                     session.setAttribute("username", username);
                     view.forward(request, resp);
 
 
                 } else {
+                    logger.error("Illegal credentials provided, login failed!");
                     request.getRequestDispatcher("/index.jsp").forward(request, resp);
                 }
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error("MyServlet inner try_catch SQLException", e);
+
             }
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("MyServlet SoSuchAlgorithmException!!!", e);
+
         } catch (IOException e) {
+            logger.error("MyServlet IOException!!!", e);
             throw new IOException();
         } catch (ServletException e) {
+            logger.error("MyServlet ServletException!!!", e);
             throw new ServletException();
         }
 

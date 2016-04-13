@@ -1,9 +1,14 @@
 package hsenid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Created by Menuka Ishan on 3/21/16.
  */
 public class StringChange {
+    private static final Logger logger = LogManager.getLogger(StringChange.class);
+
     /**
      * This class replace the spaces of given string with %20 (space character in html)
      *
@@ -16,14 +21,13 @@ public class StringChange {
 
         String[] array = x.split("\\s+", -1);
 
-        String modify = "";
-
         for (int i = 0; i < array.length; i++) {
             if (i > 0) {
                 test.append("%20");
             }
             test.append(array[i]);
         }
+        logger.trace("Empty string removing and formatting completed");
         return test.toString();
 
     }
@@ -39,6 +43,8 @@ public class StringChange {
         apiCall.append(from);
         apiCall.append("-");
         apiCall.append(to);
+
+        logger.info("API String creation completed");
         return apiCall.toString();
     }
 
