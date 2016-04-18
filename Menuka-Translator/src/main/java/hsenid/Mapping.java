@@ -26,8 +26,9 @@ public class Mapping {
     HashMap<String, String> data = new HashMap<String, String>();
 
     public Mapping() throws IOException, ParserConfigurationException, SAXException {
+        PropertyHandle mapDataget =  new PropertyHandle();
+        String url = mapDataget.getYandexUrl();
 
-        String url = "https://translate.yandex.net/api/v1.5/tr/getLangs?key=trnsl.1.1.20160314T043532Z.7b2cd69323fcafb3.0e2a38f131f947f39dce80a89756c4d03ed5da6a&ui=en";
 
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(url);

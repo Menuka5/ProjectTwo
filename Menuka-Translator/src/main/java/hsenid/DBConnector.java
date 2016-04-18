@@ -1,8 +1,10 @@
 package hsenid;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,6 +35,18 @@ public class DBConnector {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(data.getUrl(), data.getDbuser(), data.getPassword()); // creating the db connection
             logger.info("DBConnecter connection created");
+
+            ComboPooledDataSource cpds = new ComboPooledDataSource();
+            cpds.setDriverClass(data.getDbDriver());
+            cpds.setJdbcUrl(data.getUrl());
+            cpds.setUser(data.getDbuser());
+            cpds.setPassword(data.getPassword());
+
+            //Setting pooling configurations
+            cpds.setMinPoolSize(5);
+            cpds.setAcquireIncrement(5);
+            cpds.setMaxPoolSize(20);
+
         } catch (ClassNotFoundException e) { //Handling the exceptions
             logger.error("DBConnector ClassNotFoundException!!!", e);
             throw new ClassCastException();
@@ -41,6 +55,8 @@ public class DBConnector {
             throw new IOException();
         } catch (SQLException e) {
             logger.error("DBConnector SQLException", e);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
         }
     }
 

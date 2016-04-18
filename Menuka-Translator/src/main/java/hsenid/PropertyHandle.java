@@ -12,6 +12,9 @@ public class PropertyHandle {
     private String url;
     private String dbuser;
     private String password;
+    private String dbDriver;
+    private String yandexUrl;
+
 
     public PropertyHandle() throws IOException {
         Properties configProp = new Properties();
@@ -22,9 +25,10 @@ public class PropertyHandle {
         this.url = configProp.getProperty("db.url");
         this.dbuser = configProp.getProperty("db.user");
         this.password = configProp.getProperty("db.password");
+        this.dbDriver = configProp.getProperty("db.driver");
+        this.yandexUrl = configProp.getProperty("yandex.url");
         logger.info("Recieved the data from the config.properties");
     }
-
 
     public String getUrl() {
         logger.info("DB.URL returned");
@@ -41,5 +45,14 @@ public class PropertyHandle {
         return password;
     }
 
+    public String getDbDriver(){
+        logger.info("DB.Driver returned");
+        return dbDriver;
+    }
+
+    public String getYandexUrl() {
+        logger.info("Yandex.Language list called");
+        return yandexUrl;
+    }
 }
 

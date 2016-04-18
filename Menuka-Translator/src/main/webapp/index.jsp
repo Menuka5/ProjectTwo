@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="background.css">
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="css/index.css">
 <body class="container">
 
 
