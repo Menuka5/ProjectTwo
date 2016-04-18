@@ -3,7 +3,7 @@ ___
 
 ### Introduction
 
-This Project is a maven built language traslation web app which use [Yandex free API.](https://tech.yandex.com/translate/)
+This Project is a maven built language translator web app which use [Yandex free API.](https://tech.yandex.com/translate/)
 ___
 
 ### Prerequisite
@@ -15,6 +15,8 @@ This project created using below sdk's and built tools.
 3. **Apache Maven 3.3.9**
 4. **mysql-connector-java 5.1.6**
 5. **servlet-api 2.5**
+6. **log4j2**
+7. **c3p0**
 
 and deployed and tested on
 
@@ -29,15 +31,15 @@ First you may need to import hsenid.sql file into your mysql server and change b
 
 Here you have to give the username and password of your database user.
 
-To deploy this project we need to build it first using maven. so go in side the 
+To deploy this project we need to build it first using maven. so go inside the 
 
 `cd $BASE_FOLDER/Menuka-Translator`
 
-then run maven to bulid the .war file.
+then run maven to build the .war file.
 
 `mvn clean install`
 
-you can see you .war file in created target folder. 
+you can see your .war file in created target folder. 
 
 ___
 
