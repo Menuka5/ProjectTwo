@@ -36,4 +36,15 @@
         <url-pattern>/LogOut</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <description>Get Information about Country - jQuery Ajax Request</description>
+        <display-name>CountryInformation</display-name>
+        <servlet-name>CountryInformation</servlet-name>
+        <servlet-class>hsenid.BeforeAddUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CountryInformation</servlet-name>
+        <url-pattern>/CountryInformation</url-pattern>
+    </servlet-mapping>
+
 </web-app>

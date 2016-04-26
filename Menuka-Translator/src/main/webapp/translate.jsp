@@ -34,6 +34,7 @@
 </head>
 
 <body>
+<%@include file="top.jsp" %>
 <div>
     <div style="color: white;">
         <h3>

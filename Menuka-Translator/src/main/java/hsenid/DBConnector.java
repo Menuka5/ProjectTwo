@@ -13,6 +13,7 @@ import java.sql.SQLException;
 
 public class DBConnector {
     private static final Logger logger = LogManager.getLogger(DBConnector.class);
+    ComboPooledDataSource cpds;
 
     /**
      * Task of this class is to create database connection using servlet context listener.
@@ -20,7 +21,7 @@ public class DBConnector {
     public static Connection conn; // This static so we can change value in any method
 
 
-    public DBConnector(String url, String username, String password) throws IOException, SQLException {
+    public DBConnector() throws IOException, SQLException {
         /**
          * @param url
          * This is the database url of the connection
@@ -32,11 +33,9 @@ public class DBConnector {
 
         try {
             PropertyHandle data = new PropertyHandle();
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(data.getUrl(), data.getDbuser(), data.getPassword()); // creating the db connection
             logger.info("DBConnecter connection created");
 
-            ComboPooledDataSource cpds = new ComboPooledDataSource();
+            cpds = new ComboPooledDataSource();
             cpds.setDriverClass(data.getDbDriver());
             cpds.setJdbcUrl(data.getUrl());
             cpds.setUser(data.getDbuser());
@@ -47,24 +46,19 @@ public class DBConnector {
             cpds.setAcquireIncrement(5);
             cpds.setMaxPoolSize(20);
 
-        } catch (ClassNotFoundException e) { //Handling the exceptions
-            logger.error("DBConnector ClassNotFoundException!!!", e);
-            throw new ClassCastException();
         } catch (IOException e) {
             logger.error("DBConnector IOException!!!", e);
             throw new IOException();
-        } catch (SQLException e) {
-            logger.error("DBConnector SQLException", e);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
     }
 
-    public Connection getConn() {
+    public Connection getConn() throws SQLException {
         /**
          * returning the created connection
          */
-        return conn;
+        return cpds.getConnection();
     }
 
 }

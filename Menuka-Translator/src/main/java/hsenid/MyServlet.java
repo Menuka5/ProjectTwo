@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class MyServlet extends HttpServlet {
      */
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
         resp.setContentType("text/html"); // Set output as html
 
         PreparedStatement pst = null;
@@ -46,12 +47,12 @@ public class MyServlet extends HttpServlet {
             String password = request.getParameter("password");
             logger.info("received the credentials from the index.jsp ");
             RequestDispatcher view = request.getRequestDispatcher("/translate.jsp");
-
+            DBConnector dbPool = (DBConnector)getServletContext().getAttribute("DBConnection");
 
             try {
 
                 request.setAttribute("Error", "You haven't provide valid username or Password!!! ");
-                LoginCheck statusVal = new LoginCheck();
+                LoginCheck statusVal = new LoginCheck(dbPool.getConn());
                 status = statusVal.checking(username, password);
 
                 if (status) {
@@ -59,7 +60,6 @@ public class MyServlet extends HttpServlet {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("username", username);
                     view.forward(request, resp);
-
 
                 } else {
                     logger.error("Illegal credentials provided, login failed!");
@@ -70,9 +70,6 @@ public class MyServlet extends HttpServlet {
                 logger.error("MyServlet inner try_catch SQLException", e);
 
             }
-        } catch (NoSuchAlgorithmException e) {
-            logger.error("MyServlet SoSuchAlgorithmException!!!", e);
-
         } catch (IOException e) {
             logger.error("MyServlet IOException!!!", e);
             throw new IOException();

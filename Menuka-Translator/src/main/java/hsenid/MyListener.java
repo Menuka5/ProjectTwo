@@ -16,24 +16,20 @@ import java.sql.SQLException;
 public class MyListener implements ServletContextListener {
 
     private final static Logger logger = LogManager.getLogger(MyListener.class);
+    DBConnector db = null; // Here we Created the Database connection
 
     /**
      * When Web app starts the MyListener works
      * Then contextInitialized method invokes.
      */
     public void contextInitialized(ServletContextEvent event) {
+
         logger.info("Servlet Context Listener Initialised");
+        ServletContext test1 = event.getServletContext();
 
-        ServletContext context = event.getServletContext();
-        String url = context.getInitParameter("dburl");
-
-
-        String username = context.getInitParameter("username");
-        String password = context.getInitParameter("password");
-        DBConnector db = null; // Here we Created the Database connection
         try {
-            db = new DBConnector(url, username, password);
-            context.setAttribute("Database", db); //We use this method because we can use it another class (The Added attribute)
+            db = new DBConnector();
+            test1.setAttribute("DBConnection", db);
             logger.trace("DBConnection created!!!");
             
         } catch (IOException e) {
@@ -46,7 +42,11 @@ public class MyListener implements ServletContextListener {
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
+        try {
+            db.getConn().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

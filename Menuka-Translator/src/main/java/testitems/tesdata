@@ -1,0 +1,25 @@
+DBConnector dbPool = (DBConnector)getServletContext().getAttribute("DBConnection");
+        ResultSet rs=null;
+        ResultSet rsCount=null;
+        Connection getUserConn = null;
+
+        try {
+            getUserConn = dbPool.getConn();
+            PreparedStatement pst = getUserConn.prepareStatement("SELECT DISTINCT City FROM Customers;");
+            rs = pst.executeQuery();
+            PreparedStatement pst2 = getUserConn.prepareStatement("SELECT COUNT(username) AS username FROM userdetails;");
+            rsCount = pst2.executeQuery();
+            int SizeofUsers= rsCount.getInt("username");
+
+            String usernamesData[] = new String[SizeofUsers];
+
+            int i=0;
+
+            while (rs.next()){
+                usernamesData[i] = rs.getString("username");
+                i++;
+            }
+
+            request.setAttribute("usernames", usernamesData);
+            RequestDispatcher view = request.getRequestDispatcher("/registration.jsp");
+            view.forward(request, resp);

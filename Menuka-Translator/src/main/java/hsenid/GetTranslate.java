@@ -37,9 +37,9 @@ public class GetTranslate extends HttpServlet {
         /**
          * Here we over ride the doGet method of
          */
+
         resp.setContentType("text/html"); //  setting the printwriter to html outputs
         request.setCharacterEncoding("UTF-8"); // Setting unicode as encoding for use languages like japanese
-
         resp.setCharacterEncoding("UTF-8");
 
         //Getting relevant parameters from translate.jsp

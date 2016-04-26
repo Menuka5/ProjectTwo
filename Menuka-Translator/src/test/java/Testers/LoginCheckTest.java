@@ -1,14 +1,24 @@
 package Testers;
 
+import hsenid.DBConnector;
 import hsenid.LoginCheck;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  * Created by hsenid on 3/30/16.
  */
 public class LoginCheckTest {
+    DBConnector aTestConn;
+
+    public LoginCheckTest() throws IOException, SQLException {
+        aTestConn = new DBConnector();
+    }
 
     @DataProvider(name = "objectTestData")
     public static Object[][] objectTestData() {
@@ -28,12 +38,11 @@ public class LoginCheckTest {
 
     @Test(dataProvider = "objectTestData")
     public void testChecking(TestData tst) throws Exception {
-        LoginCheck testing = new LoginCheck();
         String uname = tst.get(0);
         String pword = tst.get(1);
         boolean val = tst.getStatus();
 
-        LoginCheck checkin = new LoginCheck();
+        LoginCheck checkin = new LoginCheck(aTestConn.getConn());
 
         Assert.assertEquals(checkin.checking(uname, pword), val);
 
