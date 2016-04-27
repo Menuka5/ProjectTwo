@@ -53,5 +53,14 @@
         <servlet-name>CheckAvailability</servlet-name>
         <url-pattern>/CheckAvailability</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SearchUser</servlet-name>
+        <servlet-class>hsenid.UserFiles.SearchUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchUser</servlet-name>
+        <url-pattern>/SearchUser</url-pattern>
+    </servlet-mapping>
 
 </web-app>
