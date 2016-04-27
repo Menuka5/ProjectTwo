@@ -37,14 +37,21 @@
     </servlet-mapping>
 
     <servlet>
-        <description>Get Information about Country - jQuery Ajax Request</description>
-        <display-name>CountryInformation</display-name>
-        <servlet-name>CountryInformation</servlet-name>
-        <servlet-class>hsenid.BeforeAddUser</servlet-class>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>hsenid.UserFiles.AddUser</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CountryInformation</servlet-name>
-        <url-pattern>/CountryInformation</url-pattern>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/AddUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckAvailability</servlet-name>
+        <servlet-class>hsenid.CheckAvailability</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckAvailability</servlet-name>
+        <url-pattern>/CheckAvailability</url-pattern>
     </servlet-mapping>
 
 </web-app>

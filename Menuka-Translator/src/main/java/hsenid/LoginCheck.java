@@ -33,7 +33,7 @@ public class LoginCheck {
 
         try {
             String hashedPass = HashClass.SHA1(pWord);
-            PreparedStatement pst = myConn.prepareStatement("select * from users where username=? and password=?");
+            PreparedStatement pst = myConn.prepareStatement("select * from userdetails where username=? and password=?");
             pst.setString(1, uName);
             pst.setString(2, hashedPass);
             rs = pst.executeQuery();

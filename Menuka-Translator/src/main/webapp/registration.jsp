@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +15,8 @@
 
 </head>
 <body>
-<%@include file="top.jsp" %>
-<form action="AddUser" method="post" class="form-horizontal">
+
+<form action="AddUser" method="post" class="form-horizontal" onsubmit="confirmPass();">
     <fieldset>
 
         <!-- Form Name -->
@@ -28,14 +27,12 @@
 
 
         <!-- Text input-->
-
-
         <div class="form-group">
             <label class="col-md-4 control-label" for="fname">First Name</label>
 
             <div class="col-md-5">
-                <input name="fname" type="text" placeholder="You First Name" class="form-control input-md" value="test"
-                       required>
+                <input id="fname" name="fname" type="text" placeholder="You First Name" class="form-control input-md"
+                       required="dsfsdffsa">
 
             </div>
         </div>
@@ -54,7 +51,7 @@
 
             <div class="col-md-5">
                 <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" class="form-control input-md"
-                       type="text" value="1991/03/16" required readonly/>
+                       readonly type="text" required/>
                 <span class="help-block">Click on year to select year</span>
             </div>
         </div>
@@ -79,7 +76,7 @@
 
             <div class="col-md-5">
                 <input id="email" name="email" type="email" placeholder="Type Your Email Here"
-                       class="form-control input-md" required value="menuka@gmail.com">
+                       class="form-control input-md" value="menuka@gmail.com" required="">
 
             </div>
         </div>
@@ -90,7 +87,7 @@
 
             <div class="col-md-5">
                 <input id="mnumber" name="mnumber" type="text" pattern="[0-9]{11}" placeholder="Your Mobile Number"
-                       class="form-control input-md" required="" maxlength=11 value="94716310375">
+                       class="form-control input-md" required="" maxlength=”11” value="94716310375">
                 <span class="help-block">with country code. Ex: Sri lanka 94...</span>
             </div>
         </div>
@@ -101,7 +98,7 @@
 
             <div class="col-md-5">
                 <input id="username" name="username" type="text" placeholder="Type a Unique Username"
-                       class="form-control input-md" required value="test1"> 
+                       class="form-control input-md" required="">
 
             </div>
         </div>
@@ -112,7 +109,7 @@
 
             <div class="col-md-5">
                 <input id="pass1" name="password" type="password" placeholder="Type a password here"
-                       class="form-control input-md" required value="aaa">
+                       class="form-control input-md" required="">
 
             </div>
         </div>
@@ -123,7 +120,7 @@
 
             <div class="col-md-5">
                 <input id="pass2" name="cpassword" type="password" placeholder="Confirm Your Password"
-                       class="form-control input-md" required value="aaa" onblur="confirmPass()">
+                       class="form-control input-md" required="" onblur="confirmPass()">
 
             </div>
         </div>
@@ -140,7 +137,7 @@
     </fieldset>
 </form>
 
-
+</form>
 </div>
 
 <script>
