@@ -1,0 +1,84 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>Archetype Created Web Application</display-name>
+
+    <listener>
+        <listener-class>hsenid.MyListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>hello</servlet-name>
+        <servlet-class>hsenid.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hello</servlet-name>
+        <url-pattern>/MyServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>hi</servlet-name>
+        <servlet-class>hsenid.GetTranslate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hi</servlet-name>
+        <url-pattern>/GetTranslate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>hsenid.LogOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>hsenid.UserFiles.AddUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/AddUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckAvailability</servlet-name>
+        <servlet-class>hsenid.CheckAvailability</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckAvailability</servlet-name>
+        <url-pattern>/CheckAvailability</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchUser</servlet-name>
+        <servlet-class>hsenid.UserFiles.SearchUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchUser</servlet-name>
+        <url-pattern>/SearchUser</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>hsenid.UserFiles.Search</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AllData</servlet-name>
+        <servlet-class>hsenid.UserFiles.AllData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllData</servlet-name>
+        <url-pattern>/AllData</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html>
@@ -30,7 +29,8 @@
                 <label for="uname" class="col-sm-3 control-label textclr">Username : </label>
 
                 <div class="col-sm-9">
-                    <input type="text" name="username" class="form-control" placeholder="Enter username" id="uname" value="test">
+                    <input type="text" name="username" class="form-control" placeholder="Enter username" id="uname"
+                           value="test">
                 </div>
 
             </div>
@@ -38,7 +38,8 @@
                 <label for="pword" class="col-sm-3 control-label textclr">password : </label>
 
                 <div class="col-sm-9">
-                    <input type="password" name="password" id="pword" class="form-control" placeholder="Enter password" value="test123">
+                    <input type="password" name="password" id="pword" class="form-control" placeholder="Enter password"
+                           value="test123">
                 </div>
             </div>
             <div class="form-group">

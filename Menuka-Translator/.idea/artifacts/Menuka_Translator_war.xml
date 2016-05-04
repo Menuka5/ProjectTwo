@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Menuka-Translator:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="Menuka-Translator.war">
+      <element id="artifact" artifact-name="Menuka-Translator:war exploded" />
+    </root>
+  </artifact>
+</component>

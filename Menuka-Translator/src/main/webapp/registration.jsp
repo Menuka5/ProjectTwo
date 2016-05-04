@@ -1,4 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +17,7 @@
 
 </head>
 <body>
-
+<%@include file="top.jsp" %>
 <form action="AddUser" method="post" class="form-horizontal" onsubmit="confirmPass();">
     <fieldset>
 
@@ -51,7 +53,7 @@
 
             <div class="col-md-5">
                 <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" class="form-control input-md"
-                       readonly type="text" required/>
+                       type="text" required/>
                 <span class="help-block">Click on year to select year</span>
             </div>
         </div>
@@ -62,7 +64,7 @@
             <div class="col-md-4">
                 <select id="selectbasic" name="country" class="form-control">
                     <option value="Sri Lanka">Sri Lanka</option>
-                    <option value="Japan">Japanese</option>
+                    <option value="Japan">Japan</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="United States">United States</option>
                     <option value="Australia">Australia</option>
@@ -70,7 +72,6 @@
             </div>
         </div>
 
-        <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="email">Email</label>
 
@@ -81,7 +82,6 @@
             </div>
         </div>
 
-        <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="mnumber">Mobile Number</label>
 
@@ -161,7 +161,7 @@
         if (pass != confPass) {
             alert('Wrong confirm password !');
             return false
-        }else{
+        } else {
             return true;
         }
     }

@@ -17,23 +17,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SearchUser extends HttpServlet{
+public class SearchUser extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(DBConnector.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        ResultSet resultSet=null;
+        ResultSet resultSet = null;
+        ResultSet count = null;
 
-        DBConnector dbPool = (DBConnector)getServletContext().getAttribute("DBConnection");
+
+        DBConnector dbPool = (DBConnector) getServletContext().getAttribute("DBConnection");
+        Connection myConn = null;
+        Connection myConn2 = null;
 
         try {
-            Connection myConn = dbPool.getConn();
-            Connection myConn2 = dbPool.getConn();
-            String query = "SELECT fname, lname, dob, country, email, mnumber,username FROM userdetails";
+            myConn = dbPool.getConn();
+            myConn2 = dbPool.getConn();
+            String query = "SELECT fname, lname, dob, country, email, mnumber,username FROM userdetails limit 5";
+            String query2 = "SELECT COUNT(*) as total FROM userdetails";
             PreparedStatement preparedStatement = myConn.prepareStatement(query);
+            PreparedStatement countStatement = myConn2.prepareStatement(query2);
+
             resultSet = preparedStatement.executeQuery();
+            count = countStatement.executeQuery();
+
+//            logger.info(countVal);
+
             ArrayList users = new ArrayList();
             ArrayList dob = new ArrayList();
             ArrayList country = new ArrayList();
@@ -42,8 +53,8 @@ public class SearchUser extends HttpServlet{
             ArrayList mobile = new ArrayList();
 
 
-            while (resultSet.next()){
-                users.add(resultSet.getString("fname") + " " +resultSet.getString("lname"));
+            while (resultSet.next()) {
+                users.add(resultSet.getString("fname") + " " + resultSet.getString("lname"));
                 dob.add(resultSet.getString("dob"));
                 country.add(resultSet.getString("country"));
                 email.add(resultSet.getString("email"));
@@ -57,40 +68,34 @@ public class SearchUser extends HttpServlet{
             request.setAttribute("email", email);
             request.setAttribute("username", usernames);
             request.setAttribute("mnumber", mobile);
+//            request.setAttribute("count", countVal);
 
             RequestDispatcher view = request.getRequestDispatcher("/SearchUser.jsp");
             view.forward(request, resp);
-
-
-         /*   out.println("<br>");
-
-            for (int i = 0; i < users.size(); i++) {
-                out.println(users.get(i) +" " + dob.get(i) +" " + country.get(i) +" " + email.get(i) +" " + mobile.get(i)+" " +usernames.get(i) + "<br>");
-            }*/
-
-/*
-            usernames = new String[userCount];
-            out.println(userCount);
-
-            int i=0;
-            while (resultSet.next()){
-
-                out.println(resultSet.getString("fname") + "<br>");
-
-                usernames[i] = resultSet.getString("fname");
-
-
-                i++;
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            try {
+                myConn.close();
+//                myConn2.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-*/
+        }
 
-      /*      for (String x : usernames){
-                out.println("Size of array -> " + x +"<br>");
-            }*/
+
+        /*try {
+
+            myConn = dbPool.getConn();
+
+
+            PreparedStatement preparedStatement = myConn.prepareStatement(query2);
+            count = preparedStatement.executeQuery();
+            System.out.println(count.getInt(1));
 
 
         } catch (SQLException e) {
-            logger.error(e.getMessage());
-        }
+            e.printStackTrace();
+        }*/
     }
 }

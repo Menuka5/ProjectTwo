@@ -30,9 +30,9 @@
                 $.ajax({
                     type: "POST",
                     url: "CheckAvalability",
-                    data: "uname="+ username,
+                    data: "uname=" + username,
                     success: function (msg) {
-alert(msg);
+                        alert(msg);
                         $(".status").ajaxComplete(function (event, request, settings) {
                             $(".status").html(msg);
 
@@ -51,7 +51,8 @@ alert(msg);
 
 
 <div>
-    <label class="flable">User Name :</label> <input class="username" type="text" name="username"> <span class="status"></span>
+    <label class="flable">User Name :</label> <input class="username" type="text" name="username"> <span
+        class="status"></span>
 </div>
 
 </body>

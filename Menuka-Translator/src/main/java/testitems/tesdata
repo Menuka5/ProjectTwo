@@ -23,3 +23,47 @@ DBConnector dbPool = (DBConnector)getServletContext().getAttribute("DBConnection
             request.setAttribute("usernames", usernamesData);
             RequestDispatcher view = request.getRequestDispatcher("/registration.jsp");
             view.forward(request, resp);
+=---------------------------------------------------
+
+
+<script>
+        $(document).ready(function(){
+            $("#search1").click(function(){
+                var search = $('#searchword').val();
+                $.ajax({
+                    url: "Search",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        searchword: search
+                    },
+
+                    success:function(data){
+                        //var test = JSON.parse(data);
+
+                        alert(data);
+                    }
+
+                });
+            });
+        });
+
+    </script>
+
+
+     <script type="text/javascript">
+            $(document).ready(function() {
+                $('#call').click(function ()
+                {
+                    $.ajax({
+                        type: "post",
+                        url: "testme", //this is my servlet
+                        data: "input=" +$('#ip').val()+"&output="+$('#op').val(),
+                        success: function(msg){
+                                $('#output').append(msg);
+                        }
+                    });
+                });
+
+            });
+        </script>

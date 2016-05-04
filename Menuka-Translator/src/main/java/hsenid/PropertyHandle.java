@@ -45,7 +45,7 @@ public class PropertyHandle {
         return password;
     }
 
-    public String getDbDriver(){
+    public String getDbDriver() {
         logger.info("DB.Driver returned");
         return dbDriver;
     }

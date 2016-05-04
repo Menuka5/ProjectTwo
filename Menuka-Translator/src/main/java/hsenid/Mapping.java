@@ -26,7 +26,7 @@ public class Mapping {
     HashMap<String, String> data = new HashMap<String, String>();
 
     public Mapping() throws IOException, ParserConfigurationException, SAXException {
-        PropertyHandle mapDataget =  new PropertyHandle();
+        PropertyHandle mapDataget = new PropertyHandle();
         String url = mapDataget.getYandexUrl();
 
 

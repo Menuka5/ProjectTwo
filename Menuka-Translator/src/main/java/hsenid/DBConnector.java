@@ -7,18 +7,16 @@ import org.apache.logging.log4j.Logger;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
 public class DBConnector {
     private static final Logger logger = LogManager.getLogger(DBConnector.class);
-    ComboPooledDataSource cpds;
-
     /**
      * Task of this class is to create database connection using servlet context listener.
      */
     public static Connection conn; // This static so we can change value in any method
+    ComboPooledDataSource cpds;
 
 
     public DBConnector() throws IOException, SQLException {
@@ -42,9 +40,9 @@ public class DBConnector {
             cpds.setPassword(data.getPassword());
 
             //Setting pooling configurations
-            cpds.setMinPoolSize(5);
+            cpds.setMinPoolSize(10);
             cpds.setAcquireIncrement(5);
-            cpds.setMaxPoolSize(20);
+            cpds.setMaxPoolSize(30);
 
         } catch (IOException e) {
             logger.error("DBConnector IOException!!!", e);

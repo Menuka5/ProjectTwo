@@ -53,7 +53,7 @@
         <servlet-name>CheckAvailability</servlet-name>
         <url-pattern>/CheckAvailability</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>SearchUser</servlet-name>
         <servlet-class>hsenid.UserFiles.SearchUser</servlet-class>
@@ -61,6 +61,24 @@
     <servlet-mapping>
         <servlet-name>SearchUser</servlet-name>
         <url-pattern>/SearchUser</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>hsenid.UserFiles.Search</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AllData</servlet-name>
+        <servlet-class>hsenid.UserFiles.AllData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllData</servlet-name>
+        <url-pattern>/AllData</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -30,7 +30,6 @@ public class LoginCheck {
         ResultSet rs;
 
 
-
         try {
             String hashedPass = HashClass.SHA1(pWord);
             PreparedStatement pst = myConn.prepareStatement("select * from userdetails where username=? and password=?");
@@ -44,7 +43,7 @@ public class LoginCheck {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 myConn.close();
             } catch (SQLException e) {

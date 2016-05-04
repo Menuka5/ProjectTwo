@@ -45,7 +45,7 @@ public class MyServlet extends HttpServlet {
             String password = request.getParameter("password");
             logger.info("received the credentials from the index.jsp ");
             RequestDispatcher view = request.getRequestDispatcher("/translate.jsp");
-            DBConnector dbPool = (DBConnector)getServletContext().getAttribute("DBConnection");
+            DBConnector dbPool = (DBConnector) getServletContext().getAttribute("DBConnection");
 
             try {
 

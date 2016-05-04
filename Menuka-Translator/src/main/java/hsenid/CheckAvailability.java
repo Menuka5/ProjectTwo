@@ -3,10 +3,15 @@ package hsenid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
-import java.sql.*;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class CheckAvailability extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(CheckAvailability.class);
@@ -18,7 +23,7 @@ public class CheckAvailability extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             logger.info("Check availability called");
-            DBConnector dbPool = (DBConnector)getServletContext().getAttribute("DBConnection");
+            DBConnector dbPool = (DBConnector) getServletContext().getAttribute("DBConnection");
             Connection myConn = dbPool.getConn();
 
            /* String connectionURL = "jdbc:mysql://localhost:3306/students"; // students is my database name
@@ -30,16 +35,15 @@ public class CheckAvailability extends HttpServlet {
             String uname = request.getParameter("uname");
 
             PreparedStatement ps = myConn.prepareStatement("select username from userdetails where username=?");
-            ps.setString(1,uname);
+            ps.setString(1, uname);
             ResultSet rs = ps.executeQuery();
 
             if (!rs.next()) {
-                out.println("<font color=green><b>"+uname+"</b> is avaliable</font>");
+                out.println("<font color=green><b>" + uname + "</b> is avaliable</font>");
 
                 logger.info("Username detected!!!");
-            }
-            else{
-                out.println("<font color=red><b>"+uname+"</b> is already in use</font>");
+            } else {
+                out.println("<font color=red><b>" + uname + "</b> is already in use</font>");
             }
             out.println();
 

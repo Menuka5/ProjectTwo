@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+.login {
+    width: 500px;
+    clear: both;
+    margin-left: 25%;
+    margin-top: 15%;
+}
+
+.login input {
+    width: 80%;
+    clear: both;
+}
+
+.textclr {
+    color: white;
+}
