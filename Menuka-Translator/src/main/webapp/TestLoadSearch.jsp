@@ -12,7 +12,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 
+    <script>
+        function operateFormatter(value, row, index) {
+            return [
 
+                '<a class="remove ml10 btn btn-danger btn-large" href="javascript:void(0)" title="Remove">','Delete',
+                '<i class="glyphicon glyphicon-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+
+        window.operateEvents = {
+            'click .remove': function (e, value, row, index) {
+                alert(value);
+
+            }
+        };
+    </script>
 
     <script>
         $(document).ready(function(){
@@ -85,6 +101,13 @@
                             align: 'left',
                             valign: 'bottom',
                             sortable: true
+                        },{
+                            field: 'operate',
+                            title: 'Delete User',
+                            align: 'center',
+                            valign: 'middle',
+                            formatter: operateFormatter,
+                            events: operateEvents
                         }]
                     });
 

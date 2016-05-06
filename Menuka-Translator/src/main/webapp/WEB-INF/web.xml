@@ -81,4 +81,22 @@
         <url-pattern>/AllData</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UChecker</servlet-name>
+        <servlet-class>hsenid.UserFiles.UsernameChecker</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UChecker</servlet-name>
+        <url-pattern>/UChecker</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CitySender</servlet-name>
+        <servlet-class>hsenid.UserFiles.CitySender</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CitySender</servlet-name>
+        <url-pattern>/CitySender</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

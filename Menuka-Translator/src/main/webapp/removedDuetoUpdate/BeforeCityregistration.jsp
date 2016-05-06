@@ -54,46 +54,9 @@
         });
     </script>
 
-
-    <script>
-        $(document).ready(function(){
-            $("#country").change(function(){
-                var country = $("#country").val();
-//                alert(country);
-                $.ajax({
-
-                    // The URL for the request
-                    url: "CitySender",
-
-                    // The data to send (will be converted to a query string)
-                    data: {
-                        country: country
-                    },
-
-                    // Whether this is a POST or GET request
-                    type: "GET",
-
-                    // The type of data we expect back
-                    dataType : "json",
-                    success: function (data2) {
-//                        alert("Success");
-                        $("#states").empty();
-                        for(var i = 0; i < data2.length; i++) {
-                            var obj = data2[i];
-
-                            $("#states").append('<option value='+ obj.city_id +'>'+ obj.city +'</option>');
-                        }
-
-
-                    },
-                    error: function(data){ console.log(data); }
-                })
-            });
-        });
-    </script>
 </head>
 <body>
-<%@include file="top.jsp" %>
+<%@include file="../top.jsp" %>
 <form action="AddUser" method="post" class="form-horizontal" onsubmit="confirmPass();">
     <fieldset>
 
@@ -138,8 +101,7 @@
             <label class="col-md-4 control-label" for="selectbasic">Country</label>
 
             <div class="col-md-4">
-                <select id="country" name="country"class="form-control">
-                    <option>Select Country</option>
+                <select id="selectbasic" name="country" class="form-control">
                     <option value="Sri Lanka">Sri Lanka</option>
                     <option value="Japan">Japan</option>
                     <option value="United Kingdom">United Kingdom</option>
@@ -148,17 +110,6 @@
                 </select>
             </div>
         </div>
-
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="states">City</label>
-            <div class="col-md-4">
-                <select id="states" name="states" class="form-control">
-                    <option>Select City</option>
-                </select>
-                <span class="help-block">First Select the country to get cities</span>
-            </div>
-        </div>
-
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="email">Email</label>

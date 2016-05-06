@@ -5,6 +5,7 @@ import hsenid.HashClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +37,10 @@ public class AddUser extends HttpServlet {
         String email = request.getParameter("email");
         long mnumber = Long.parseLong(request.getParameter("mnumber"));
         String username = request.getParameter("username");
+        String city_id = request.getParameter("states");
         String password = null;
 
-        String query = "insert into userdetails (fname, lname, dob, country, email, mnumber, username, password) values (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "insert into userdetails (fname, lname, dob, country, email, mnumber, username, password, city_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         DBConnector dbPool = (DBConnector) getServletContext().getAttribute("DBConnection");
@@ -54,9 +56,10 @@ public class AddUser extends HttpServlet {
             preparedStatement.setLong(6, mnumber);
             preparedStatement.setString(7, username);
             preparedStatement.setString(8, password);
+            preparedStatement.setString(9, city_id);
             preparedStatement.executeUpdate();
             logger.info("Data insertion complete!!!");
-
+            request.getRequestDispatcher("/UserAddSuccess.jsp").forward(request, resp);
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } catch (NoSuchAlgorithmException e) {
@@ -68,6 +71,7 @@ public class AddUser extends HttpServlet {
         out.println("Last Name -> " + lastname + "<br>");
         out.println("Date -> " + dob + "<br>");
         out.println("Country -> " + country + "<br>");
+        out.println("Country -> " + city_id + "<br>");
         out.println("Mobile -> " + mnumber + "<br>");
         out.println("email -> " + email + "<br>");
         out.println("username -> " + username + "<br>");
