@@ -29,12 +29,15 @@ public class AllData extends HttpServlet {
         ResultSet resultSet = null;
         String username = req.getParameter("searchword");
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
+        Connection myConn=null;
+
         JSONArray jsonArray = new JSONArray();
-//        JsonArray jsonArray = new JsonArray();
+
+
         logger.info(username);
         try {
-            Connection myConn = dbpool.getConn();
-            String likeQuery = "SELECT * FROM userdetails";
+            myConn = dbpool.getConn();
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id";
             preparedStatement = myConn.prepareStatement(likeQuery);
             resultSet = preparedStatement.executeQuery();
 
@@ -49,6 +52,9 @@ public class AllData extends HttpServlet {
                 jsonObject.put("email", resultSet.getString("email"));
                 jsonObject.put("mobile", resultSet.getString("mnumber"));
                 jsonObject.put("username", resultSet.getString("username"));
+                jsonObject.put("userRole", resultSet.getString("group_name"));
+                jsonObject.put("cityId", resultSet.getString("city_id"));
+                jsonObject.put("city", resultSet.getString("city"));
 
                 jsonArray.put(jsonObject);
 
@@ -63,6 +69,30 @@ public class AllData extends HttpServlet {
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
+        }finally {
+            if (myConn != null){
+                try {
+                    myConn.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+
+            if (preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+
+            if (resultSet != null){
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
         }
     }
 }

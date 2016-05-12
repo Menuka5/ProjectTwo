@@ -45,10 +45,9 @@ public class DBConnector {
             cpds.setMaxPoolSize(30);
 
         } catch (IOException e) {
-            logger.error("DBConnector IOException!!!", e);
-            throw new IOException();
+            logger.error(e.getMessage());
         } catch (PropertyVetoException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 

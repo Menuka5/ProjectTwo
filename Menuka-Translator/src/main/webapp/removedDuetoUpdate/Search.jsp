@@ -6,14 +6,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#call').click(function ()
-            {
+        $(document).ready(function () {
+            $('#call').click(function () {
                 $.ajax({
                     type: "post",
                     url: "Search", //this is my servlet
-                    data: "input=" +$('#ip').val()+"&output="+$('#op').val(),
-                    success: function(msg){
+                    data: "input=" + $('#ip').val() + "&output=" + $('#op').val(),
+                    success: function (msg) {
                         $('#output').append(msg);
                     }
                 });
@@ -31,8 +30,10 @@
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="searchword">Search a User</label>
+
             <div class="col-md-5">
-                <input id="searchword" name="searchword" type="text" placeholder="Add User's name" class="form-control input-md" required="">
+                <input id="searchword" name="searchword" type="text" placeholder="Add User's name"
+                       class="form-control input-md" required="">
 
             </div>
         </div>
@@ -40,6 +41,7 @@
 
         <div class="form-group">
             <label class="col-md-4 control-label" for=""></label>
+
             <div class="col-md-3">
                 <button id="search1" name="" class="btn btn-block btn-success">Search</button>
             </div>

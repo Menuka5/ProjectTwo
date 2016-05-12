@@ -46,15 +46,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>CheckAvailability</servlet-name>
-        <servlet-class>hsenid.CheckAvailability</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CheckAvailability</servlet-name>
-        <url-pattern>/CheckAvailability</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>SearchUser</servlet-name>
         <servlet-class>hsenid.UserFiles.SearchUser</servlet-class>
     </servlet>
@@ -62,7 +53,7 @@
         <servlet-name>SearchUser</servlet-name>
         <url-pattern>/SearchUser</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>Search</servlet-name>
         <servlet-class>hsenid.UserFiles.Search</servlet-class>
@@ -71,7 +62,7 @@
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>AllData</servlet-name>
         <servlet-class>hsenid.UserFiles.AllData</servlet-class>
@@ -98,5 +89,23 @@
         <servlet-name>CitySender</servlet-name>
         <url-pattern>/CitySender</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SendUserRole</servlet-name>
+        <servlet-class>hsenid.UserFiles.SendUserRole</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendUserRole</servlet-name>
+        <url-pattern>/SendUserRole</url-pattern>
+    </servlet-mapping>
     
+    <servlet>
+        <servlet-name>DeleteUser</servlet-name>
+        <servlet-class>hsenid.UserFiles.DeleteUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUser</servlet-name>
+        <url-pattern>/DeleteUser</url-pattern>
+    </servlet-mapping>e
+
 </web-app>

@@ -11,86 +11,14 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
-
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 
-    <script>
-        $(document).ready(function(){
-            $("#username").blur(function(){
-                var uname = $("#username").val();
-//                alert(uname);
-                $.ajax({
+    <script src="js/registration.js"></script>
 
-                    // The URL for the request
-                    url: "UChecker",
-
-                    // The data to send (will be converted to a query string)
-                    data: {
-                        searchword: uname
-                    },
-
-                    // Whether this is a POST or GET request
-                    type: "GET",
-
-                    // The type of data we expect back
-                    dataType : "json",
-                    success: function (data2) {
-                        if(data2.boolVal){
-                            alert("Username is already taken!!");
-
-                            $("#username").val("");
-                        }else{
-                            $("usernamemsg").update("");
-                        }
-
-                    },
-                    error: function(data){ console.log(data); }
-                })
-            });
-        });
-    </script>
-
-
-    <script>
-        $(document).ready(function(){
-            $("#country").change(function(){
-                var country = $("#country").val();
-//                alert(country);
-                $.ajax({
-
-                    // The URL for the request
-                    url: "CitySender",
-
-                    // The data to send (will be converted to a query string)
-                    data: {
-                        country: country
-                    },
-
-                    // Whether this is a POST or GET request
-                    type: "GET",
-
-                    // The type of data we expect back
-                    dataType : "json",
-                    success: function (data2) {
-//                        alert("Success");
-                        $("#states").empty();
-                        for(var i = 0; i < data2.length; i++) {
-                            var obj = data2[i];
-
-                            $("#states").append('<option value='+ obj.city_id +'>'+ obj.city +'</option>');
-                        }
-
-
-                    },
-                    error: function(data){ console.log(data); }
-                })
-            });
-        });
-    </script>
 </head>
 <body>
 <%@include file="top.jsp" %>
@@ -138,7 +66,7 @@
             <label class="col-md-4 control-label" for="selectbasic">Country</label>
 
             <div class="col-md-4">
-                <select id="country" name="country"class="form-control">
+                <select id="country" name="country" class="form-control">
                     <option>Select Country</option>
                     <option value="Sri Lanka">Sri Lanka</option>
                     <option value="Japan">Japan</option>
@@ -151,6 +79,7 @@
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="states">City</label>
+
             <div class="col-md-4">
                 <select id="states" name="states" class="form-control">
                     <option>Select City</option>
@@ -180,7 +109,19 @@
             </div>
         </div>
 
-        <!-- Text input-->
+        <!-- User role-->
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="userRole">User Role</label>
+
+            <div class="col-md-4">
+                <select id="userRole" name="userRole" class="form-control">
+                </select>
+                <span class="help-block">Select a user role</span>
+            </div>
+        </div>
+
+        <!-- Username-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="username">Username</label>
 
@@ -229,6 +170,7 @@
 </form>
 </div>
 
+
 <script>
     var date_input = $('input[name="date"]'); //our date input has the name "date"
     var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
@@ -240,20 +182,8 @@
         defaultViewDate: {year: 1990, month: 01, day: 01}
 
     };
-    date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
+    date_input.datepicker(options);
 </script>
 
-<script type="text/javascript">
-    function confirmPass() {
-        var pass = document.getElementById("pass1").value
-        var confPass = document.getElementById("pass2").value
-        if (pass != confPass) {
-            alert('Wrong confirm password !');
-            return false
-        } else {
-            return true;
-        }
-    }
-</script>
 </body>
 </html>

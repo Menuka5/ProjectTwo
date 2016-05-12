@@ -65,15 +65,13 @@ public class MyServlet extends HttpServlet {
                 }
 
             } catch (SQLException e) {
-                logger.error("MyServlet inner try_catch SQLException", e);
+                logger.error(e.getMessage());
 
             }
         } catch (IOException e) {
-            logger.error("MyServlet IOException!!!", e);
-            throw new IOException();
+            logger.error(e.getMessage());
         } catch (ServletException e) {
-            logger.error("MyServlet ServletException!!!", e);
-            throw new ServletException();
+            logger.error(e.getMessage());
         }
 
     }

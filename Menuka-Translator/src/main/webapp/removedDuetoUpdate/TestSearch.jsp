@@ -7,13 +7,12 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
 
             $.ajax({
 
@@ -24,7 +23,7 @@
                 type: "GET",
 
                 // The type of data we expect back
-                dataType : "json",
+                dataType: "json",
                 success: function (data2) {
 
                     $('#table').bootstrapTable({
@@ -62,25 +61,25 @@
                             valign: 'top',
                             sortable: true,
 
-                        },{
+                        }, {
                             field: 'dob',
                             title: 'First Name',
                             align: 'right',
                             valign: 'bottom',
                             sortable: true
-                        },{
+                        }, {
                             field: 'mobile',
                             title: 'First Name',
                             align: 'right',
                             valign: 'bottom',
                             sortable: true
-                        },{
+                        }, {
                             field: 'email',
                             title: 'First Name',
                             align: 'right',
                             valign: 'bottom',
                             sortable: true
-                        },{
+                        }, {
                             field: 'username',
                             title: 'First Name',
                             align: 'right',
@@ -91,16 +90,18 @@
 
 
                 },
-                error: function(data){ console.log(data); }
+                error: function (data) {
+                    console.log(data);
+                }
             })
 
         });
     </script>
-<%-- On click Table--%>
+    <%-- On click Table--%>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
 
-            $("button").click(function(){
+            $("button").click(function () {
                 var searchdata = $("#search").val();
                 $.ajax({
 
@@ -116,74 +117,76 @@
                     type: "GET",
 
                     // The type of data we expect back
-                    dataType : "json",
+                    dataType: "json",
                     success: function (data2) {
 
-                                $('#table').bootstrapTable({
-                                    method: 'get',
-                                    data: data2,
-                                    height: 600,
-                                    striped: true,
-                                    pagination: true,
-                                    pageSize: 10,
-                                    pageList: [10, 25, 50, 100, 200],
-                                    search: false,
-                                    showColumns: false,
-                                    showRefresh: false,
-                                    minimumCountColumns: 2,
-                                    columns: [{
-                                        field: 'state',
-                                        checkbox: true
-                                    }, {
-                                        field: 'firstName',
-                                        title: 'First Name',
-                                        align: 'right',
-                                        valign: 'bottom',
-                                        sortable: true
-                                    }, {
-                                        field: 'lastName',
-                                        title: 'Item Name',
-                                        align: 'center',
-                                        valign: 'middle',
-                                        sortable: true,
+                        $('#table').bootstrapTable({
+                            method: 'get',
+                            data: data2,
+                            height: 600,
+                            striped: true,
+                            pagination: true,
+                            pageSize: 10,
+                            pageList: [10, 25, 50, 100, 200],
+                            search: false,
+                            showColumns: false,
+                            showRefresh: false,
+                            minimumCountColumns: 2,
+                            columns: [{
+                                field: 'state',
+                                checkbox: true
+                            }, {
+                                field: 'firstName',
+                                title: 'First Name',
+                                align: 'right',
+                                valign: 'bottom',
+                                sortable: true
+                            }, {
+                                field: 'lastName',
+                                title: 'Item Name',
+                                align: 'center',
+                                valign: 'middle',
+                                sortable: true,
 
-                                    }, {
-                                        field: 'country',
-                                        title: 'Item Price',
-                                        align: 'left',
-                                        valign: 'top',
-                                        sortable: true,
+                            }, {
+                                field: 'country',
+                                title: 'Item Price',
+                                align: 'left',
+                                valign: 'top',
+                                sortable: true,
 
-                                    },{
-                                        field: 'dob',
-                                        title: 'First Name',
-                                        align: 'right',
-                                        valign: 'bottom',
-                                        sortable: true
-                                    },{
-                                        field: 'mobile',
-                                        title: 'First Name',
-                                        align: 'right',
-                                        valign: 'bottom',
-                                        sortable: true
-                                    },{
-                                        field: 'email',
-                                        title: 'First Name',
-                                        align: 'right',
-                                        valign: 'bottom',
-                                        sortable: true
-                                    },{
-                                        field: 'username',
-                                        title: 'First Name',
-                                        align: 'right',
-                                        valign: 'bottom',
-                                        sortable: true
-                                    }]
-                                });
+                            }, {
+                                field: 'dob',
+                                title: 'First Name',
+                                align: 'right',
+                                valign: 'bottom',
+                                sortable: true
+                            }, {
+                                field: 'mobile',
+                                title: 'First Name',
+                                align: 'right',
+                                valign: 'bottom',
+                                sortable: true
+                            }, {
+                                field: 'email',
+                                title: 'First Name',
+                                align: 'right',
+                                valign: 'bottom',
+                                sortable: true
+                            }, {
+                                field: 'username',
+                                title: 'First Name',
+                                align: 'right',
+                                valign: 'bottom',
+                                sortable: true
+                            }]
+                        });
 
 
                     },
-                    error: function(data){ console.log(data); }
+                    error: function (data) {
+                        console.log(data);
+                    }
                 })
 
             });

@@ -33,20 +33,17 @@ public class MyListener implements ServletContextListener {
             logger.trace("DBConnection created!!!");
 
         } catch (IOException e) {
-            logger.error("MyListener IOException !!!", e);
+            logger.error(e.getMessage());
         } catch (SQLException e) {
-            logger.error("MyListener SQLException !!!", e);
+            logger.error(e.getMessage());
         }
 
 
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        try {
-            db.getConn().close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (db.cpds != null){
+            db.cpds.close();
         }
-
     }
 }

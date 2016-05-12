@@ -3,6 +3,7 @@ package hsenid.UserFiles;
 import hsenid.DBConnector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -16,29 +17,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsernameChecker extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger(UsernameChecker.class);
+public class SendUserRole extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(SendUserRole.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
+
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String username = req.getParameter("searchword");
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
-        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
 
         Connection myConn = null;
+
         try {
             myConn = dbpool.getConn();
-            String likeQuery = "Select * from userdetails WHERE username=?";
-            preparedStatement = myConn.prepareStatement(likeQuery);
-            preparedStatement.setString(1, username);
+            String query = "SELECT * FROM group_name";
+
+            preparedStatement = myConn.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
-            jsonObject.put("boolVal", resultSet.next());
 
+            while (resultSet.next()) {
+                JSONObject jsonObject = new JSONObject();
 
+                jsonObject.put("group_id", resultSet.getString("group_id"));
+                jsonObject.put("group_name", resultSet.getString("group_name"));
+
+                jsonArray.put(jsonObject);
+
+            }
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }finally {
@@ -49,6 +59,7 @@ public class UsernameChecker extends HttpServlet {
                     logger.error(e.getMessage());
                 }
             }
+
             if (preparedStatement != null){
                 try {
                     preparedStatement.close();
@@ -56,6 +67,7 @@ public class UsernameChecker extends HttpServlet {
                     logger.error(e.getMessage());
                 }
             }
+
             if (resultSet != null){
                 try {
                     resultSet.close();
@@ -65,7 +77,7 @@ public class UsernameChecker extends HttpServlet {
             }
         }
 
-        out.print(jsonObject);
+        out.print(jsonArray);
         out.flush();
 
     }

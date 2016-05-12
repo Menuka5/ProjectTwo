@@ -29,21 +29,23 @@ public class Search extends HttpServlet {
         PrintWriter out = resp.getWriter();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+
         String username = req.getParameter("searchword");
+
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
+        Connection myConn=null;
         JSONArray jsonArray = new JSONArray();
-//        JsonArray jsonArray = new JsonArray();
-        logger.info(username);
+
         try {
-            Connection myConn = dbpool.getConn();
-            String likeQuery = "Select * from userdetails WHERE username LIKE ?";
+            myConn = dbpool.getConn();
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE ?";
+
             preparedStatement = myConn.prepareStatement(likeQuery);
             preparedStatement.setString(1, "%" + username + "%");
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 JSONObject jsonObject = new JSONObject();
-//                JsonObject jsonObject = new JsonObject();
                 jsonObject.put("firstName", resultSet.getString("fname"));
                 jsonObject.put("lastName", resultSet.getString("lname"));
                 jsonObject.put("dob", resultSet.getString("dob"));
@@ -51,6 +53,9 @@ public class Search extends HttpServlet {
                 jsonObject.put("email", resultSet.getString("email"));
                 jsonObject.put("mobile", resultSet.getString("mnumber"));
                 jsonObject.put("username", resultSet.getString("username"));
+                jsonObject.put("userRole", resultSet.getString("group_name"));
+                jsonObject.put("cityId", resultSet.getString("city_id"));
+                jsonObject.put("city", resultSet.getString("city"));
 
                 jsonArray.put(jsonObject);
 
@@ -59,12 +64,27 @@ public class Search extends HttpServlet {
 
             logger.info(jsonArray.toString());
 
-//            resp.getWriter().write(jsonArray.toString());
             out.print(jsonArray);
             out.flush();
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
+        }finally {
+            if (resultSet != null){
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+
+            if (preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
         }
 
     }

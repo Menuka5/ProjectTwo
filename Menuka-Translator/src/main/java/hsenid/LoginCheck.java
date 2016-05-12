@@ -25,7 +25,6 @@ public class LoginCheck {
     public boolean checking(String uName, String pWord) {
 
         logger.info("LoginCheck, Checking Login Credentials");
-        logger.error("Error Test LoginCheck.java");
         boolean returnValur = false;
         ResultSet rs;
 
@@ -38,16 +37,16 @@ public class LoginCheck {
             rs = pst.executeQuery();
             returnValur = rs.next();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             try {
                 myConn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         }
 

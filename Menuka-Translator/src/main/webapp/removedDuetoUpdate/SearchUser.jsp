@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<%@include file="top.jsp" %>
+<%@include file="../top.jsp" %>
 <%
     ArrayList users = (ArrayList) request.getAttribute("name");
     ArrayList dob = (ArrayList) request.getAttribute("dob");

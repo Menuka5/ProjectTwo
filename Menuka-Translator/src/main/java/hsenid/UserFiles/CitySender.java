@@ -19,6 +19,7 @@ import java.sql.SQLException;
 
 public class CitySender extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(CitySender.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
@@ -39,8 +40,7 @@ public class CitySender extends HttpServlet {
             resultSet = preparedStatement.executeQuery();
 
 
-
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 JSONObject jsonObject = new JSONObject();
 
                 jsonObject.put("city_id", resultSet.getString("city.city_id"));
@@ -51,7 +51,30 @@ public class CitySender extends HttpServlet {
             }
             logger.info("Out of while loop");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
+        }finally {
+            if (myConn != null){
+                try {
+                    myConn.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+            if (preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+
+            if (resultSet != null){
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
         }
 
         out.print(jsonArray);

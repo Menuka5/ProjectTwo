@@ -91,16 +91,14 @@ public class GetTranslate extends HttpServlet {
 
 
             } catch (ParserConfigurationException e) {
-                logger.error("GetTranslate ParseConfigurationException!!!" + e);
-
+                logger.error(e.getMessage());
             } catch (SAXException e) {
-                logger.error("GetTranslate SAXException" + e);
+                logger.error(e.getMessage());
             } catch (ServletException e) {
-                logger.error("GetTranslate ServletException" + e);
+                logger.error(e.getMessage());
                 throw new ServletException();
             } catch (IOException e) {
-                logger.error("GetTranslate IOException" + e);
-                throw new IOException();
+                logger.error(e.getMessage());
             }
 
         }

@@ -23,11 +23,9 @@ public class LogOut extends HttpServlet {
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);
             }
         } catch (ServletException e) {
-            logger.error("LogOut, ServletException!!", e);
-            throw new ServletException();
+            logger.error(e.getMessage());
         } catch (IOException e) {
-            logger.error("LogOut, IOException!!", e);
-            throw new IOException();
+            logger.error(e.getMessage());
         }
 
     }
