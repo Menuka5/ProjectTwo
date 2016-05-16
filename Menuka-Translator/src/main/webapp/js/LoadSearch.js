@@ -28,7 +28,7 @@ $(document).ready(function () {
                 search: false,
                 showColumns: false,
                 showRefresh: false,
-                height: 500,
+                height: 610,
                 minimumCountColumns: 2,
                 columns: [{
                     field: 'firstName',
@@ -67,6 +67,7 @@ $(document).ready(function () {
                 }, {
                     field: 'email',
                     title: 'Email',
+                    visible: false,
                     align: 'left',
                     valign: 'bottom',
                     sortable: true
@@ -141,8 +142,15 @@ window.operateEvents = {
         $("#mnumber").val(datarecieve.mobile);
         $("#email").val(datarecieve.email);
         $("#country").val(datarecieve.country);
+        $("#username").val(datarecieve.username);
+        $("#date").val(datarecieve.dob);
+
+
+
+        //alert(datarecieve.username);
 
         var country = datarecieve.country;
+        // Setting the City Option menu
         $.ajax({
 
             // The URL for the request
@@ -179,6 +187,42 @@ window.operateEvents = {
             }
 
         })
+
+
+        //Setting the role of the user
+
+        $.ajax({
+
+            // The URL for the request
+            url: "SendUserRole",
+
+            // Whether this is a POST or GET request
+            type: "GET",
+
+            // The type of data we expect back
+            dataType: "json",
+            success: function (data2) {
+
+                //$("#states").empty();
+
+                //Set the Current user sity as default selected option in edit user
+                for (var i = 0; i < data2.length; i++) {
+                    //alert()
+                    if(data2[i].group_name == datarecieve.userRole){
+                        $("#userRole").append('<option value=' + data2[i].group_id + ' selected >' + data2[i].group_name + '</option>');
+                    }else{
+                        $("#states").append('<option value=' + data2[i].group_id + ' >' + data2[i].group_name + '</option>');
+                    }
+                }
+
+
+            },
+            error: function (data) {
+                console.log(data);
+            }
+
+        })
+
 
         $("#updateUserProfile").modal("show");
 
@@ -224,7 +268,7 @@ $(document).ready(function(){
 $(document).ready(function () {
 
     $("#deleteUserData").click(function () {
-        var deleteUser = $("#username").text();
+        var deleteUser = $("#username2").text();
         //alert(deleteUser);
         $.ajax({
 

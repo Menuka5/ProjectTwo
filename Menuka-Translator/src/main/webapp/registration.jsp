@@ -1,10 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add User</title>
+    <fmt:setLocale value="en"/>
+    <fmt:bundle basename="languageFiles.Language">
+    <title><fmt:message key="top.Add"/> <fmt:message key="top.User"/></title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -20,6 +25,7 @@
     <script src="js/registration.js"></script>
 
 </head>
+
 <body>
 <%@include file="top.jsp" %>
 <form action="AddUser" method="post" class="form-horizontal" onsubmit="confirmPass();">
@@ -27,24 +33,23 @@
 
         <!-- Form Name -->
         <center>
-            <legend>Registration</legend>
+            <legend><fmt:message key="registration.Registration"/></legend>
         </center>
         <!-- Text input-->
 
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="fname">First Name</label>
+            <label class="col-md-4 control-label" for="fname"><fmt:message key="registration.First"/> <fmt:message key="registration.Name"/></label>
 
             <div class="col-md-5">
-                <input id="fname" name="fname" type="text" placeholder="You First Name" class="form-control input-md"
-                       required="dsfsdffsa">
+                <input id="fname" name="fname" type="text" class="form-control input-md" required placeholder=<fmt:message key="registration.YourFirstName"/> >
 
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="lname">Last Name</label>
+            <label class="col-md-4 control-label" for="lname"><fmt:message key="registration.Last"/> <fmt:message key="registration.Name"/></label>
 
             <div class="col-md-5">
                 <input id="lname" name="lname" type="text" placeholder="Your Last Name" class="form-control input-md">
@@ -53,77 +58,77 @@
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="date">Date of Birth</label>
+            <label class="col-md-4 control-label" for="date"><fmt:message key="registration.Birthday"/></label>
 
             <div class="col-md-5">
                 <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" class="form-control input-md"
                        type="text" required readonly/>
-                <span class="help-block">Click on year to select year</span>
+                <span class="help-block"><fmt:message key="registration.SelectYear"/></span>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Country</label>
+            <label class="col-md-4 control-label" for="selectbasic"><fmt:message key="registration.Country"/></label>
 
             <div class="col-md-4">
                 <select id="country" name="country" class="form-control">
-                    <option>Select Country</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
-                    <option value="Japan">Japan</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United States">United States</option>
-                    <option value="Australia">Australia</option>
+                    <option><fmt:message key="registration.Select"/> <fmt:message key="registration.Country"/></option>
+                    <option value="Sri Lanka"><fmt:message key="registration.SriLanka"/></option>
+                    <option value="Japan"><fmt:message key="registration.Japan"/></option>
+                    <option value="United Kingdom"><fmt:message key="registration.UnitedKingdom"/></option>
+                    <option value="United States"><fmt:message key="registration.UnitedStates"/></option>
+                    <option value="Australia"><fmt:message key="registration.Australia"/></option>
                 </select>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="states">City</label>
+            <label class="col-md-4 control-label" for="states"><fmt:message key="registration.City"/></label>
 
             <div class="col-md-4">
                 <select id="states" name="states" class="form-control">
-                    <option>Select City</option>
+                    <option><fmt:message key="registration.Select"/> <fmt:message key="registration.City"/></option>
                 </select>
-                <span class="help-block">First Select the country to get cities</span>
+                <span class="help-block"><fmt:message key="registration.SelectCities"/></span>
             </div>
         </div>
 
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="email">Email</label>
+            <label class="col-md-4 control-label" for="email"><fmt:message key="registration.Email"/></label>
 
             <div class="col-md-5">
-                <input id="email" name="email" type="email" placeholder="Type Your Email Here"
-                       class="form-control input-md" value="menuka@gmail.com" required="">
+                <input id="email" name="email" type="email" placeholder=<fmt:message key="registration.EmailPlaceHolder"/>"Type Your Email Here"
+                       class="form-control input-md" value="menukcvffa@gmail.com" required="">
 
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="mnumber">Mobile Number</label>
+            <label class="col-md-4 control-label" for="mnumber"><fmt:message key="registration.Mobile"/> <fmt:message key="registration.Number"/></label>
 
             <div class="col-md-5">
                 <input id="mnumber" name="mnumber" type="text" pattern="[0-9]{11}" placeholder="Your Mobile Number"
                        class="form-control input-md" required="" maxlength=”11” value="94716310375">
-                <span class="help-block">with country code. Ex: Sri lanka 94...</span>
+                <span class="help-block"><fmt:message key="registration.CountryCode"/></span>
             </div>
         </div>
 
         <!-- User role-->
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="userRole">User Role</label>
+            <label class="col-md-4 control-label" for="userRole"><fmt:message key="registration.UserRole"/></label>
 
             <div class="col-md-4">
                 <select id="userRole" name="userRole" class="form-control">
                 </select>
-                <span class="help-block">Select a user role</span>
+                <span class="help-block"><fmt:message key="registration.SelectUserRole"/></span>
             </div>
         </div>
 
         <!-- Username-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="username">Username</label>
+            <label class="col-md-4 control-label" for="username"><fmt:message key="registration.Username"/></label>
 
             <div class="col-md-5">
                 <input id="username" name="username" type="text" placeholder="Type a Unique Username"
@@ -135,7 +140,7 @@
 
         <!-- Password input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="pass1">Password</label>
+            <label class="col-md-4 control-label" for="pass1"><fmt:message key="registration.Password"/></label>
 
             <div class="col-md-5">
                 <input id="pass1" name="password" type="password" placeholder="Type a password here"
@@ -146,7 +151,7 @@
 
         <!-- Password input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="pass2">Confirm Password</label>
+            <label class="col-md-4 control-label" for="pass2"><fmt:message key="registration.Confirm"/> <fmt:message key="registration.Password"/></label>
 
             <div class="col-md-5">
                 <input id="pass2" name="cpassword" type="password" placeholder="Confirm Your Password"
@@ -155,19 +160,18 @@
             </div>
         </div>
 
-        <!-- Button -->
+        <!-- Submit button -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="sbtn"></label>
 
             <div class="col-md-4">
-                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()">Add User</button>
+                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()"><fmt:message key="top.Add"/>Add <fmt:message key="top.User"/>User</button>
             </div>
         </div>
 
     </fieldset>
 </form>
 
-</form>
 </div>
 
 
@@ -185,5 +189,6 @@
     date_input.datepicker(options);
 </script>
 
+</fmt:bundle>
 </body>
 </html>

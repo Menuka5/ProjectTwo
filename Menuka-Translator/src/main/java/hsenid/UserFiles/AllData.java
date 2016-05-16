@@ -45,7 +45,6 @@ public class AllData extends HttpServlet {
                 JSONObject jsonObject = new JSONObject();
 //                JsonObject jsonObject = new JsonObject();
                 jsonObject.put("firstName", resultSet.getString("fname"));
-                logger.info(resultSet.getString("fname"));
                 jsonObject.put("lastName", resultSet.getString("lname"));
                 jsonObject.put("dob", resultSet.getString("dob"));
                 jsonObject.put("country", resultSet.getString("country"));

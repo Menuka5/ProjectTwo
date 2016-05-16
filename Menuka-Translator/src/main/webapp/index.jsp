@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<html>
+<fmt:setLocale value="en"/>
+<fmt:bundle basename="languageFiles.Language">
 <head>
-    <title>Menuka's Login Page</title>
+    <title><fmt:message key="index.translator"/> <fmt:message key="index.login"/> <fmt:message key="index.page"/></title>
 
 
 </head>
@@ -28,7 +31,7 @@
 
         <form action="MyServlet" class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="uname" class="col-sm-3 control-label textclr">Username : </label>
+                <label for="uname" class="col-sm-3 control-label textclr"><fmt:message key="index.Username"/> : </label>
 
                 <div class="col-sm-9">
                     <input type="text" name="username" class="form-control" placeholder="Enter username" id="uname"
@@ -37,7 +40,7 @@
 
             </div>
             <div class="form-group">
-                <label for="pword" class="col-sm-3 control-label textclr">password : </label>
+                <label for="pword" class="col-sm-3 control-label textclr"><fmt:message key="index.Password"/> : </label>
 
                 <div class="col-sm-9">
                     <input type="password" name="password" id="pword" class="form-control" placeholder="Enter password"
@@ -46,7 +49,7 @@
             </div>
             <div class="form-group">
 
-                <input type="submit" class="btn btn-success btn-block" value="Login">
+                <input type="submit" class="btn btn-success btn-block" value=<fmt:message key="index.Login"/>>
 
 
             </div>
@@ -57,6 +60,6 @@
 
 
 </div>
-
+</fmt:bundle>
 </body>
 </html>

@@ -1,12 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-</head>
-
-<body>
 <div>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -18,25 +9,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand">Welcome...</span>
+                <%
+                    String name = (String) session.getAttribute("username");
+                %>
+                <span class="navbar-brand"><fmt:message key="translate.Hello"/> <%= name%>...</span>
 
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="translate.jsp">Translator <span class="sr-only">(current)</span></a>
+                    <li class="active"><a href="translate.jsp"><fmt:message key="index.translator"/> <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">User Management<span class="caret"></span></a>
+                           aria-expanded="false"><fmt:message key="top.User"/> <fmt:message key="top.Management"/><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="registration.jsp">Add User</a>
+                                <a href="registration.jsp"><fmt:message key="top.Add"/> <fmt:message key="top.User"/></a>
                             </li>
-                            <li><a href="LoadSearch.jsp">Search User</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete User</a></li>
+                            <li><a href="LoadSearch.jsp"><fmt:message key="top.Search"/> <fmt:message key="top.User"/></a></li>
+
                         </ul>
                     </li>
                 </ul>
@@ -52,5 +46,3 @@
         $.ajax({url: "CountryInformation"});
     }
 </script>
-</body>
-</html>
