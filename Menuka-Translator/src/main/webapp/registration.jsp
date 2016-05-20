@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <fmt:setLocale value="en"/>
-    <fmt:bundle basename="languageFiles.Language">
+    <fmt:bundle basename="Language">
     <title><fmt:message key="top.Add"/> <fmt:message key="top.User"/></title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">

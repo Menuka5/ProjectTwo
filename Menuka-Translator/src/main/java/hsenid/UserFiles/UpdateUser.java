@@ -1,7 +1,6 @@
 package hsenid.UserFiles;
 
 import hsenid.DBConnector;
-import hsenid.HashClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -34,9 +32,7 @@ public class UpdateUser extends HttpServlet{
         String email = request.getParameter("email");
         long mnumber = Long.parseLong(request.getParameter("mnumber"));
         String city_id = request.getParameter("states");
-        String username = request.getParameter("username");
-
-        String password = null;
+        String username = request.getParameter("username");;
 
         Connection myConn=null;
         PreparedStatement preparedStatement=null;
@@ -60,49 +56,11 @@ public class UpdateUser extends HttpServlet{
             preparedStatement.setString(9, username);
             preparedStatement.executeUpdate();
             logger.info("Update User query executed");
+            request.getRequestDispatcher("UserUpdateSuccessAlert.jsp").forward(request, resp);
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
-
-       /*
-        try {
-            password = HashClass.SHA1(request.getParameter("password"));
-            myConn = dbPool.getConn();
-            preparedStatement = myConn.prepareStatement(query);
-            preparedStatement.setString(1, firstname);
-            preparedStatement.setString(2, lastname);
-            preparedStatement.setString(3, dob);
-            preparedStatement.setString(4, country);
-            preparedStatement.setString(5, email);
-            preparedStatement.setLong(6, mnumber);
-            preparedStatement.setString(8, password);
-            preparedStatement.setString(9, city_id);
-            preparedStatement.setString(10, groupId);
-            preparedStatement.executeUpdate();
-            logger.info("Data insertion complete!!!");
-            request.getRequestDispatcher("/UserAddSuccess.jsp").forward(request, resp);
-        } catch (SQLException e) {
-            logger.error(e.getMessage());
-        } catch (NoSuchAlgorithmException e) {
-            logger.error(e.getMessage());
-        }finally {
-            if (myConn != null){
-                try {
-                    myConn.close();
-                } catch (SQLException e) {
-                    logger.error(e.getMessage());
-                }
-            }
-
-            if (preparedStatement != null){
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    logger.error(e.getMessage());
-                }
-            }
-        }*/
 
 //        Check details recieve
 

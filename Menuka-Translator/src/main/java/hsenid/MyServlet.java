@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +36,9 @@ public class MyServlet extends HttpServlet {
         PreparedStatement pst = null;
         ResultSet rs = null;
         Boolean status = false;
+        Connection myConn=null;
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
 
 
         // Getting parameters
@@ -55,6 +59,21 @@ public class MyServlet extends HttpServlet {
 
                 if (status) {
                     logger.info("Access granted to the Traslator page");
+
+                    myConn = dbPool.getConn();
+                    String query = "select group_id from userdetails where username=? ";
+                    preparedStatement = myConn.prepareStatement(query);
+                    preparedStatement.setString(1, username);
+                    resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()){
+                        logger.error("Blocked User Entered ");
+                            String group_id = resultSet.getString("group_id");
+                            if (group_id.equals("4")){
+                                logger.error("User's Access is denied");
+                                request.getRequestDispatcher("/BlockedUserAlert.jsp").forward(request, resp);
+                            }
+                    }
+
                     HttpSession session = request.getSession(true);
                     session.setAttribute("username", username);
                     view.forward(request, resp);

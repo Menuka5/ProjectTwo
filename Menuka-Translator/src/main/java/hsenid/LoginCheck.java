@@ -27,6 +27,8 @@ public class LoginCheck {
         logger.info("LoginCheck, Checking Login Credentials");
         boolean returnValur = false;
         ResultSet rs;
+        ResultSet resultSet=null;
+        PreparedStatement preparedStatement;
 
 
         try {
@@ -36,6 +38,7 @@ public class LoginCheck {
             pst.setString(2, hashedPass);
             rs = pst.executeQuery();
             returnValur = rs.next();
+            logger.info("Loging Check has completed.");
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } catch (NoSuchAlgorithmException e) {

@@ -1,8 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 
 <head>
-    <title>Search a User</title>
+<fmt:setLocale value="en"/>
+<fmt:bundle basename="Language">
+    <title><fmt:message key="LoadSearch.title"/></title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -18,6 +23,7 @@
 
     <script src="js/LoadSearch.js"></script>
     <script src="js/UpdateUser.js"></script>
+    <%--<script src="js/registration.js"></script>--%>
 
 </head>
 <body>
@@ -25,7 +31,7 @@
 <center>
     <input type="text" id="search">
 
-    <button id="bn1" class="btn btn-primary btn-large"><i class="icon-white icon-zoom-in"></i>Search</button>
+    <button id="bn1" class="btn btn-primary btn-large"><i class="icon-white icon-zoom-in"></i><fmt:message key="LoadSearch.Search"/>Search</button>
     <br>
     <br>
 </center>
@@ -41,14 +47,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <center> <h4 class="modal-title">Delete User</h4></center>
+                <center> <h4 class="modal-title"><fmt:message key="LoadSearch.Delete"/>Delete <fmt:message key="top.User"/>User</h4></center>
             </div>
             <div class="modal-body">
 
-                <p>Do you want to delete <label id="username2"></label>
+                <p><fmt:message key="LoadSearch.title"/>Do you want to delete <label id="username2"></label>
                      </p>
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteUserData">Delete</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteUserData"><fmt:message key="LoadSearch.Delete"/>Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="LoadSearch.Cancel"/>Cancel</button>
             </div>
         </div>
 
@@ -67,7 +73,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="fname">First Name</label>
+                            <label class="col-md-4 control-label" for="fname"><fmt:message key="registration.First"/> <fmt:message key="registration.Name"/></label>
 
                             <div class="col-md-5">
                                 <input id="fname" name="fname" type="text" placeholder="You First Name" class="form-control input-md"
@@ -77,7 +83,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="lname">Last Name</label>
+                            <label class="col-md-4 control-label" for="lname"><fmt:message key="registration.Last"/> <fmt:message key="registration.Name"/></label>
 
                             <div class="col-md-5">
                                 <input id="lname" name="lname" type="text" placeholder="Your Last Name" class="form-control input-md">
@@ -88,45 +94,45 @@
                         <%--Birthday --%>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="date">Date of Birth</label>
+                            <label class="col-md-4 control-label" for="date"><fmt:message key="registration.Birthday"/></label>
 
                             <div class="col-md-5">
                                 <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" class="form-control input-md"
                                        type="text" required readonly/>
-                                <span class="help-block">Click on year to select year</span>
+                                <span class="help-block"><fmt:message key="registration.SelectYear"/></span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Country</label>
+                            <label class="col-md-4 control-label" for="selectbasic"><fmt:message key="registration.Country"/></label>
 
                             <div class="col-md-4">
                                 <select id="country" name="country" class="form-control">
-                                    <option>Select Country</option>
-                                    <option value="Sri Lanka">Sri Lanka</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United States">United States</option>
-                                    <option value="Australia">Australia</option>
+
+                                    <option value="Sri Lanka"><fmt:message key="registration.SriLanka"/></option>
+                                    <option value="Japan"><fmt:message key="registration.Japan"/></option>
+                                    <option value="United Kingdom"><fmt:message key="registration.UnitedKingdom"/></option>
+                                    <option value="United States"><fmt:message key="registration.UnitedStates"/></option>
+                                    <option value="Australia"><fmt:message key="registration.Australia"/></option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="states">City</label>
+                            <label class="col-md-4 control-label" for="states"><fmt:message key="registration.City"/></label>
 
                             <div class="col-md-4">
                                 <select id="states" name="states" class="form-control">
-                                    <option>Select City</option>
+                                    <option><fmt:message key="registration.Select"/> <fmt:message key="registration.City"/></option>
                                 </select>
-                                <span class="help-block">First Select the country to get cities</span>
+                                <span class="help-block"><fmt:message key="registration.SelectCities"/></span>
                             </div>
                         </div>
 
 
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="email">Email</label>
+                            <label class="col-md-4 control-label" for="email"><fmt:message key="registration.Email"/></label>
 
                             <div class="col-md-5">
                                 <input id="email" name="email" type="email" placeholder="Type Your Email Here"
@@ -138,31 +144,31 @@
                         <%-- Mobile number--%>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="mnumber">Mobile Number</label>
+                            <label class="col-md-4 control-label" for="mnumber"><fmt:message key="registration.Mobile"/> <fmt:message key="registration.Number"/></label>
 
                             <div class="col-md-5">
                                 <input id="mnumber" name="mnumber" type="text" pattern="[0-9]{11}" placeholder="Your Mobile Number"
                                        class="form-control input-md" required="" maxlength=”11” value="94716310375">
-                                <span class="help-block">with country code. Ex: Sri lanka 94...</span>
+                                <span class="help-block"><fmt:message key="registration.CountryCode"/></span>
                             </div>
                         </div>
 
                         <!-- User role-->
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="userRole">User Role</label>
+                            <label class="col-md-4 control-label" for="userRole"><fmt:message key="registration.UserRole"/></label>
 
                             <div class="col-md-4">
                                 <select id="userRole" name="userRole" class="form-control">
-                                    <option>Select User role</option>
+
                                 </select>
-                                <span class="help-block">Select a user role</span>
+                                <span class="help-block"><fmt:message key="registration.SelectUserRole"/></span>
                             </div>
                         </div>
 
                         <!-- Username-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="username">Username</label>
+                            <label class="col-md-4 control-label" for="username"><fmt:message key="registration.Username"/></label>
 
                             <div class="col-md-5">
                                 <input id="username" name="username" type="text" placeholder="Type a Unique Username"
@@ -177,7 +183,7 @@
                             <label class="col-md-4 control-label" for="sbtn"></label>
 
                             <div class="col-md-4">
-                                <button id="sbtn" name="sbtn" class="btn btn-success" type="submit">Update user</button>
+                                <button id="sbtn" name="sbtn" class="btn btn-success" type="submit"><fmt:message key="LoadSearch.Update"/> <fmt:message key="top.User"/></button>
                             </div>
                         </div>
 
@@ -202,5 +208,8 @@
     };
     date_input.datepicker(options);
 </script>
+
+
+</fmt:bundle>
 </body>
 </html>

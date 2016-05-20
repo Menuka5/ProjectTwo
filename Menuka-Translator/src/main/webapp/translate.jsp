@@ -44,7 +44,8 @@
     <div id="logout">
         <form action="LogOut">
             <input type="submit" class="btn btn-danger" value=<fmt:message key="translate.Logout"/>>
-        </form>6
+        </form>
+        6
     </div>
 
 
@@ -65,24 +66,32 @@
 
 
 					<textarea cols="50" rows="13" name="fromText">
-						<%
+                        <c:set var="s2" value='${requestScope["fromText"]}'/>
+
+                        <c:if test="${not empty s2}">
+                            <c:out value="${s2}"></c:out>
+                        </c:if>
+					<%--	<%
                             String s2 = (String) request.getAttribute("fromText");
                             if (s2 != null) {
                                 out.println(s2);
                             }
-                        %>
+                        %>--%>
+
+
 					</textarea>
 
                 <select name="from">
                     <%
                         Mapping objMap = new Mapping();
                         String[] values = objMap.sendValues();
+                        request.setAttribute("values", values);
                     %>
-                    <%--
-                here We set a dynamic select list.
-                I used "selected" attributes to store the selected values when page refreshes.
-                --%>
-                    <%
+                        <%--
+                    here We set a dynamic select list.
+                    I used "selected" attributes to store the selected values when page refreshes.
+                    --%>
+                <%--    <%
                         for (int i = 0; i < values.length; i++) {
                             if (values[i].equals(request.getAttribute("from"))) {
                                 out.println("<option selected>" + values[i] + "</option>");
@@ -90,7 +99,20 @@
                                 out.println("<option>" + values[i] + "</option>");
                             }
                         }
-                    %>
+                    %>--%>
+                    <c:set var="frm" value='${requestScope["from"]}' />
+                    <c:forEach var="vals" items="${values}">
+                        <%--<option>${vals}</option>--%>
+                        <c:choose>
+                            <c:when test="${vals eq frm}">
+                                <option selected>${vals}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option>${vals}</option>
+                            </c:otherwise>
+                        </c:choose>
+                        <%--<c:out value="${vals} />--%>
+                    </c:forEach>
 
                 </select>
             </div>
@@ -108,17 +130,32 @@
 
             <div class="col-md-10">
 					<textarea cols="50" rows="13" name="toText">
+                        <c:set var="s1" value='${requestScope["toText"]}'/>
 
-					<%
+                        <c:if test="${not empty s1}">
+                            <c:out value="${s1}"></c:out>
+                        </c:if>
+					<%--<%
                         String s1 = (String) request.getAttribute("toText");
                         if (s1 != null) {
                             out.println(s1);
                         }
-                    %>
+                    %>--%>
 					</textarea>
 
                 <select name="to">
-                    <%
+                    <c:set var="tot" value='${requestScope["to"]}' />
+                    <c:forEach var="valsto" items="${values}">
+                        <c:choose>
+                            <c:when test="${valsto eq tot}">
+                                <option selected>${valsto}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option>${valsto}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                   <%-- <%
                         for (int i = 0; i < values.length; i++) {
                             if (values[i].equals(request.getAttribute("to"))) {
                                 out.println("<option selected>" + values[i] + "</option>");
@@ -126,7 +163,7 @@
                                 out.println("<option>" + values[i] + "</option>");
                             }
                         }
-                    %>
+                    %>--%>
                 </select>
             </div>
 
@@ -134,7 +171,8 @@
 
         <div id="tbtn">
             <input type="submit" class="btn btn-success btn-lg btn-block"
-                   value=<fmt:message key="translate.Translate"/> style="width: 30%">
+                   value=
+                       <fmt:message key="translate.Translate"/> style="width: 30%">
         </div>
 
 
@@ -152,9 +190,9 @@
 
 <div class="test">
 
-    <%--
-Here the credit is given as the yandex is instructed.
---%>
+        <%--
+    Here the credit is given as the yandex is instructed.
+    --%>
 
     <a href="Translate http://translate.yandex.com/translate.jsp"
        style="color: #FFFFFF">

@@ -5,6 +5,44 @@
 //Bootstrap table configurations
 
 $(document).ready(function () {
+    $("#country").change(function () {
+        var country = $("#country").val();
+        //alert(country);
+        $.ajax({
+
+            // The URL for the request
+            url: "CitySender",
+
+            // The data to send (will be converted to a query string)
+            data: {
+                country: country
+            },
+
+            // Whether this is a POST or GET request
+            type: "GET",
+
+            // The type of data we expect back
+            dataType: "json",
+            success: function (data2) {
+                $("#states").empty();
+                for (var i = 0; i < data2.length; i++) {
+                    var obj = data2[i];
+
+                    $("#states").append('<option value=' + obj.city_id + '>' + obj.city + '</option>');
+                }
+
+
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        })
+    });
+});
+
+
+
+$(document).ready(function () {
 
     $.ajax({
 
@@ -186,7 +224,7 @@ window.operateEvents = {
                 console.log(data);
             }
 
-        })
+        });
 
 
         //Setting the role of the user
@@ -207,11 +245,11 @@ window.operateEvents = {
 
                 //Set the Current user sity as default selected option in edit user
                 for (var i = 0; i < data2.length; i++) {
-                    //alert()
+                    //alert(data2[i].group_id + data2[i].group_name );
                     if(data2[i].group_name == datarecieve.userRole){
                         $("#userRole").append('<option value=' + data2[i].group_id + ' selected >' + data2[i].group_name + '</option>');
                     }else{
-                        $("#states").append('<option value=' + data2[i].group_id + ' >' + data2[i].group_name + '</option>');
+                        $("#userRole").append('<option value=' + data2[i].group_id + ' >' + data2[i].group_name + '</option>');
                     }
                 }
 
@@ -221,7 +259,7 @@ window.operateEvents = {
                 console.log(data);
             }
 
-        })
+        });
 
 
         $("#updateUserProfile").modal("show");
