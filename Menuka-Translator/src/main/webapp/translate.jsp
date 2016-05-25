@@ -8,7 +8,7 @@
 
 <html lang="en">
 <fmt:setLocale value="en"/>
-<fmt:bundle basename="languageFiles.Language">
+<fmt:bundle basename="Language">
 <head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -45,7 +45,7 @@
         <form action="LogOut">
             <input type="submit" class="btn btn-danger" value=<fmt:message key="translate.Logout"/>>
         </form>
-        6
+
     </div>
 
 
@@ -67,18 +67,9 @@
 
 					<textarea cols="50" rows="13" name="fromText">
                         <c:set var="s2" value='${requestScope["fromText"]}'/>
-
                         <c:if test="${not empty s2}">
                             <c:out value="${s2}"></c:out>
                         </c:if>
-					<%--	<%
-                            String s2 = (String) request.getAttribute("fromText");
-                            if (s2 != null) {
-                                out.println(s2);
-                            }
-                        %>--%>
-
-
 					</textarea>
 
                 <select name="from">
@@ -91,15 +82,7 @@
                     here We set a dynamic select list.
                     I used "selected" attributes to store the selected values when page refreshes.
                     --%>
-                <%--    <%
-                        for (int i = 0; i < values.length; i++) {
-                            if (values[i].equals(request.getAttribute("from"))) {
-                                out.println("<option selected>" + values[i] + "</option>");
-                            } else {
-                                out.println("<option>" + values[i] + "</option>");
-                            }
-                        }
-                    %>--%>
+
                     <c:set var="frm" value='${requestScope["from"]}' />
                     <c:forEach var="vals" items="${values}">
                         <%--<option>${vals}</option>--%>
@@ -135,12 +118,7 @@
                         <c:if test="${not empty s1}">
                             <c:out value="${s1}"></c:out>
                         </c:if>
-					<%--<%
-                        String s1 = (String) request.getAttribute("toText");
-                        if (s1 != null) {
-                            out.println(s1);
-                        }
-                    %>--%>
+
 					</textarea>
 
                 <select name="to">
@@ -155,24 +133,15 @@
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
-                   <%-- <%
-                        for (int i = 0; i < values.length; i++) {
-                            if (values[i].equals(request.getAttribute("to"))) {
-                                out.println("<option selected>" + values[i] + "</option>");
-                            } else {
-                                out.println("<option>" + values[i] + "</option>");
-                            }
-                        }
-                    %>--%>
+
                 </select>
             </div>
 
         </div>
 
         <div id="tbtn">
-            <input type="submit" class="btn btn-success btn-lg btn-block"
-                   value=
-                       <fmt:message key="translate.Translate"/> style="width: 30%">
+            <input type="submit" style="width: 30%" class="btn btn-success btn-lg btn-block"
+                   value=<fmt:message key="translate.Translate"/>>
         </div>
 
 

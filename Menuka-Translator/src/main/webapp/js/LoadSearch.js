@@ -1,7 +1,3 @@
-/**
- * Created by hsenid on 5/12/16.
- */
-
 //Bootstrap table configurations
 
 $(document).ready(function () {
@@ -136,10 +132,19 @@ $(document).ready(function () {
                     sortable: true
                 }, {
                     field: 'operate',
-                    title: 'Delete User',
+                    title: 'Edit User',
                     align: 'center',
+                    visible: false,
                     valign: 'middle',
                     formatter: operateFormatter,
+                    events: operateEvents
+                }, {
+                    field: 'operate2',
+                    title: 'Delete User',
+                    align: 'center',
+                    visible: false,
+                    valign: 'middle',
+                    formatter: operateFormatter2,
                     events: operateEvents
                 }]
             });
@@ -162,7 +167,11 @@ function operateFormatter(value, row, index) {
     return [
         '<a class="edit ml10 btn btn-danger" href="javascript:void(0)" title="Edit">','Edit ',
         '<i class="glyphicon glyphicon-edit"></i>',
-        '</a>',' ',
+        '</a>'
+    ].join('');
+}
+function operateFormatter2(value, row, index) {
+    return [
         '<a class="remove ml10 btn btn-danger" href="javascript:void(0)" title="Remove">','Delete ',
         '<i class="glyphicon glyphicon-remove"></i>',
         '</a>'
@@ -182,10 +191,6 @@ window.operateEvents = {
         $("#country").val(datarecieve.country);
         $("#username").val(datarecieve.username);
         $("#date").val(datarecieve.dob);
-
-
-
-        //alert(datarecieve.username);
 
         var country = datarecieve.country;
         // Setting the City Option menu

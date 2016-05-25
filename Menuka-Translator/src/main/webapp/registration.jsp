@@ -165,7 +165,7 @@
             <label class="col-md-4 control-label" for="sbtn"></label>
 
             <div class="col-md-4">
-                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()"><fmt:message key="top.Add"/>Add <fmt:message key="top.User"/>User</button>
+                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()"><fmt:message key="top.Add"/> <fmt:message key="top.User"/></button>
             </div>
         </div>
 

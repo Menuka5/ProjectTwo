@@ -16,7 +16,7 @@ public class DBConnector {
      * Task of this class is to create database connection using servlet context listener.
      */
     public static Connection conn; // This static so we can change value in any method
-    static ComboPooledDataSource cpds;
+    public static ComboPooledDataSource cpds;
 
 
     public DBConnector() throws IOException, SQLException {

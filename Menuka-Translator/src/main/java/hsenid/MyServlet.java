@@ -1,5 +1,6 @@
 package hsenid;
 
+import hsenid.UserFiles.Permissions.PermissionsSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * This is the servlet class
@@ -73,9 +75,12 @@ public class MyServlet extends HttpServlet {
                                 request.getRequestDispatcher("/BlockedUserAlert.jsp").forward(request, resp);
                             }
                     }
-
+                    PermissionsSender permissionsSender = new PermissionsSender();
+                    ArrayList<String> permissions = permissionsSender.sendPermissions(username);
+//                    request.
                     HttpSession session = request.getSession(true);
                     session.setAttribute("username", username);
+                    session.setAttribute("permissions", permissions);
                     view.forward(request, resp);
 
                 } else {
