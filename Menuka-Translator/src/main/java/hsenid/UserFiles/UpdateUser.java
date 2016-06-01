@@ -56,7 +56,7 @@ public class UpdateUser extends HttpServlet{
             preparedStatement.setString(9, username);
             preparedStatement.executeUpdate();
             logger.info("Update User query executed");
-            request.getRequestDispatcher("UserUpdateSuccessAlert.jsp").forward(request, resp);
+            request.getRequestDispatcher("/Alerts/UserUpdateSuccessAlert.jsp").forward(request, resp);
 
         } catch (SQLException e) {
             logger.error(e.getMessage());

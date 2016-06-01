@@ -21,14 +21,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 
-    <script src="js/LoadSearch.js"></script>
 
-    <script>
-        $(document).ready(function () {
-//            $('#table').bootstrapTable();
-            $('#table').bootstrapTable('hideColumn', 'operate');
-        });
-    </script>
+    <script src="js/simple-bootstrap-paginator.js"></script>
+    <script src="js/ServerSide.js"></script>
 
 </head>
 <body>
@@ -38,7 +33,7 @@
     <input type="text" id="search">
 
     <button id="bn1" class="btn btn-primary btn-large"><i class="icon-white icon-zoom-in"></i><fmt:message
-            key="LoadSearch.Search"/>Search
+            key="LoadSearch.Search"/>
     </button>
     <br>
     <br>
@@ -46,6 +41,8 @@
 <div class="col-md-12">
     <table id="table"></table>
 </div>
+<div id="pagination"></div>
+<div id="pagination2"></div>
 
     <%-- Delete User model--%>
 <div class="modal fade" id="deleteUser" role="dialog">
@@ -55,7 +52,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <center><h4 class="modal-title"><fmt:message key="LoadSearch.Delete"/>Delete <fmt:message
+                <center><h4 class="modal-title"><fmt:message key="LoadSearch.Delete"/> <fmt:message
                         key="top.User"/>User</h4></center>
             </div>
             <div class="modal-body">
@@ -66,7 +63,7 @@
                         key="LoadSearch.Delete"/>Delete
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message
-                        key="LoadSearch.Cancel"/>Cancel
+                        key="LoadSearch.Cancel"/>
                 </button>
             </div>
         </div>

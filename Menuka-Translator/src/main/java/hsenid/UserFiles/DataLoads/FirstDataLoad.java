@@ -1,5 +1,4 @@
-package hsenid.UserFiles;
-
+package hsenid.UserFiles.DataLoads;
 
 import hsenid.DBConnector;
 import org.apache.logging.log4j.LogManager;
@@ -18,34 +17,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Search extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger(Search.class);
-
+public class FirstDataLoad extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(FirstDataLoad.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-
         String username = req.getParameter("searchword");
-
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
         Connection myConn=null;
+
         JSONArray jsonArray = new JSONArray();
 
+
+        logger.info(username);
         try {
             myConn = dbpool.getConn();
-            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE ? Limit 0, 10";
-
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id LIMIT 0, 10";
+//            String likeQuery = "SELECT * FROM userdetails LIMIT 0, 10";
             preparedStatement = myConn.prepareStatement(likeQuery);
-            preparedStatement.setString(1, "%" + username + "%");
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 JSONObject jsonObject = new JSONObject();
+//                JsonObject jsonObject = new JsonObject();
                 jsonObject.put("firstName", resultSet.getString("fname"));
                 jsonObject.put("lastName", resultSet.getString("lname"));
                 jsonObject.put("dob", resultSet.getString("dob"));
@@ -64,15 +62,16 @@ public class Search extends HttpServlet {
 
             logger.info(jsonArray.toString());
 
+//            resp.getWriter().write(jsonArray.toString());
             out.print(jsonArray);
             out.flush();
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }finally {
-            if (resultSet != null){
+            if (myConn != null){
                 try {
-                    resultSet.close();
+                    myConn.close();
                 } catch (SQLException e) {
                     logger.error(e.getMessage());
                 }
@@ -85,7 +84,14 @@ public class Search extends HttpServlet {
                     logger.error(e.getMessage());
                 }
             }
-        }
 
+            if (resultSet != null){
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+        }
     }
 }

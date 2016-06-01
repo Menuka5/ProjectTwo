@@ -1,5 +1,4 @@
-package hsenid.UserFiles;
-
+package hsenid.UserFiles.DataLoads;
 
 import hsenid.DBConnector;
 import org.apache.logging.log4j.LogManager;
@@ -18,13 +17,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Search extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger(Search.class);
-
+/**
+ * Created by hsenid on 5/30/16.
+ */
+public class SearchNumberOfPages extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(SearchNumberOfPages.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         PreparedStatement preparedStatement = null;
@@ -38,13 +38,22 @@ public class Search extends HttpServlet {
 
         try {
             myConn = dbpool.getConn();
-            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE ? Limit 0, 10";
+            String likeQuery = "SELECT COUNT(username) as count FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE " + "'%" + username + "%'";
 
+            logger.info(likeQuery);
             preparedStatement = myConn.prepareStatement(likeQuery);
-            preparedStatement.setString(1, "%" + username + "%");
+//            preparedStatement.setString(1, "%" + username + "%");
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
+            if(resultSet.next()){
+                String preNum = resultSet.getString("count");
+                int number = Integer.parseInt(preNum);
+                int resultPages = (int) Math.ceil(number/10.0);
+                jsonArray.put(resultPages);
+//                out.println(jsonArray);
+            }
+
+            /*while (resultSet.next()) {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("firstName", resultSet.getString("fname"));
                 jsonObject.put("lastName", resultSet.getString("lname"));
@@ -59,10 +68,10 @@ public class Search extends HttpServlet {
 
                 jsonArray.put(jsonObject);
 
-            }
+            }*/
             logger.info("JSON ARRAY Created");
 
-            logger.info(jsonArray.toString());
+            logger.info(jsonArray.toString() + "Tested");
 
             out.print(jsonArray);
             out.flush();
@@ -86,6 +95,5 @@ public class Search extends HttpServlet {
                 }
             }
         }
-
     }
 }

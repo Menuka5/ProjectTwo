@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Access Denied</title>
-    <link rel="stylesheet" type="text/css" href="css/BlockedUserAlert.css">
+    <link rel="stylesheet" type="text/css" href="../css/BlockedUserAlert.css">
 </head>
 <body bgcolor="black">
 <div class="dotted">

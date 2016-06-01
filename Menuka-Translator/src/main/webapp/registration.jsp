@@ -120,7 +120,7 @@
             <label class="col-md-4 control-label" for="userRole"><fmt:message key="registration.UserRole"/></label>
 
             <div class="col-md-4">
-                <select id="userRole" name="userRole" class="form-control">
+                <select id="userRole" name="userRole" class="selectpicker form-control" multiple>
                 </select>
                 <span class="help-block"><fmt:message key="registration.SelectUserRole"/></span>
             </div>

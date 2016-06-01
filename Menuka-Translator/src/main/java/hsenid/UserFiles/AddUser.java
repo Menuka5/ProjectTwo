@@ -63,7 +63,7 @@ public class AddUser extends HttpServlet {
             preparedStatement.setString(10, groupId);
             preparedStatement.executeUpdate();
             logger.info("Data insertion complete!!!");
-            request.getRequestDispatcher("/UserAddSuccess.jsp").forward(request, resp);
+            request.getRequestDispatcher("/Alerts/UserAddSuccess.jsp").forward(request, resp);
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } catch (NoSuchAlgorithmException e) {

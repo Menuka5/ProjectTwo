@@ -140,7 +140,7 @@
         </div>
 
         <div id="tbtn">
-            <input type="submit" style="width: 30%" class="btn btn-success btn-lg btn-block"
+            <input type="submit" style="width: 30%" id="translateButton" class="btn btn-success btn-lg btn-block"
                    value=<fmt:message key="translate.Translate"/>>
         </div>
 

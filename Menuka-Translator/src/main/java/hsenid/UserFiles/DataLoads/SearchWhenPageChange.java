@@ -1,5 +1,4 @@
-package hsenid.UserFiles;
-
+package hsenid.UserFiles.DataLoads;
 
 import hsenid.DBConnector;
 import org.apache.logging.log4j.LogManager;
@@ -18,19 +17,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Search extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger(Search.class);
-
+public class SearchWhenPageChange extends HttpServlet{
+    private static final Logger logger = LogManager.getLogger(SearchWhenPageChange.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         String username = req.getParameter("searchword");
+        String pageNumber = req.getParameter("pageNumber");
+//        String pageNumber = "2";
+        int realPageNumber = ((Integer.parseInt(pageNumber)) - 1) * 10;
 
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
         Connection myConn=null;
@@ -38,7 +38,7 @@ public class Search extends HttpServlet {
 
         try {
             myConn = dbpool.getConn();
-            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE ? Limit 0, 10";
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE ? Limit "+ realPageNumber +", 10";
 
             preparedStatement = myConn.prepareStatement(likeQuery);
             preparedStatement.setString(1, "%" + username + "%");
@@ -86,6 +86,5 @@ public class Search extends HttpServlet {
                 }
             }
         }
-
     }
 }

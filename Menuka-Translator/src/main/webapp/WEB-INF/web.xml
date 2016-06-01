@@ -121,5 +121,50 @@
         <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>FirstDataLoad</servlet-name>
+        <servlet-class>hsenid.UserFiles.DataLoads.FirstDataLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirstDataLoad</servlet-name>
+        <url-pattern>/FirstDataLoad</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>NumberOfPages</servlet-name>
+        <servlet-class>hsenid.UserFiles.DataLoads.NumberOfPages</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NumberOfPages</servlet-name>
+        <url-pattern>/NumberOfPages</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>WhenPageChange</servlet-name>
+        <servlet-class>hsenid.UserFiles.DataLoads.WhenPageChange</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WhenPageChange</servlet-name>
+        <url-pattern>/WhenPageChange</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchWhenPageChange</servlet-name>
+        <servlet-class>hsenid.UserFiles.DataLoads.SearchWhenPageChange</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchWhenPageChange</servlet-name>
+        <url-pattern>/SearchWhenPageChange</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchNumberOfPages</servlet-name>
+        <servlet-class>hsenid.UserFiles.DataLoads.SearchNumberOfPages</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchNumberOfPages</servlet-name>
+        <url-pattern>/SearchNumberOfPages</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

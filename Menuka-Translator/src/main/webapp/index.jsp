@@ -20,13 +20,7 @@
 
 
 <div class="login container-fluid">
- <%--   <%
-        String s2 = (String) request.getAttribute("Error");
-        if (s2 != null) {
-            out.println(s2);
 
-        }
-    %>--%>
     <div style="color: white; align-content: center">
      <c:set var="s2" value='${requestScope["Error"]}' />
 
@@ -56,7 +50,7 @@
             </div>
             <div class="form-group">
 
-                <input type="submit" class="btn btn-success btn-block" value=<fmt:message key="index.Login"/>>
+                <input id="submitButton" type="submit" class="btn btn-success btn-block" value=<fmt:message key="index.Login"/>>
 
 
             </div>

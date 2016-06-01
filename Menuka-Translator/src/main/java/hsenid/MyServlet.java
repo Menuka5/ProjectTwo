@@ -72,7 +72,7 @@ public class MyServlet extends HttpServlet {
                             String group_id = resultSet.getString("group_id");
                             if (group_id.equals("4")){
                                 logger.error("User's Access is denied");
-                                request.getRequestDispatcher("/BlockedUserAlert.jsp").forward(request, resp);
+                                request.getRequestDispatcher("/Alerts/BlockedUserAlert.jsp").forward(request, resp);
                             }
                     }
                     PermissionsSender permissionsSender = new PermissionsSender();
