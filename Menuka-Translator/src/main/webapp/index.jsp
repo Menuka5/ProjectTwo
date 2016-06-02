@@ -23,7 +23,6 @@
 
     <div style="color: white; align-content: center">
      <c:set var="s2" value='${requestScope["Error"]}' />
-
      <c:if test="${not empty s2}">
          <c:out value="${s2}"></c:out>
      </c:if>

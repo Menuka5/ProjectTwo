@@ -43,7 +43,7 @@
 
     <div id="logout">
         <form action="LogOut">
-            <input type="submit" class="btn btn-danger" value=<fmt:message key="translate.Logout"/>>
+            <input type="submit" class="btn btn-danger" id="logout" value=<fmt:message key="translate.Logout"/>>
         </form>
 
     </div>

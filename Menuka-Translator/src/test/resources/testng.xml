@@ -6,7 +6,10 @@
             <class name="Testers.StringChangeTest"/>
             <class name="Testers.LoginCheckTest"/>
             <class name="Testers.PropertyHandleTest"/>
-            <class name="selenium.TestTestCase"/>
+            <class name="selenium.LoginPageTest"/>
+            <class name="selenium.BlockedUserTest"/>
+            <class name="selenium.TranslatorPageTest"/>
         </classes>
+
     </test>
 </suite>

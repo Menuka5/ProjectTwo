@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <c:if test="${checkTranslate}">
-                        <li class="active"><a href="translate.jsp"><fmt:message key="index.translator"/> <span class="sr-only">(current)</span></a>
+                        <li class="active"><a id="Translate" href="translate.jsp"><fmt:message key="index.translator"/> <span class="sr-only">(current)</span></a>
                         </li>
                     </c:if>
 
