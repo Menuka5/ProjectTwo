@@ -18,6 +18,7 @@ import java.sql.SQLException;
 
 public class UsernameChecker extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(UsernameChecker.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
@@ -41,22 +42,22 @@ public class UsernameChecker extends HttpServlet {
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (myConn != null){
+        } finally {
+            if (myConn != null) {
                 try {
                     myConn.close();
                 } catch (SQLException e) {
                     logger.error(e.getMessage());
                 }
             }
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {
                     logger.error(e.getMessage());
                 }
             }
-            if (resultSet != null){
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {

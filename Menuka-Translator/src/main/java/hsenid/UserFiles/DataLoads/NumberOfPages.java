@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class NumberOfPages extends HttpServlet{
+public class NumberOfPages extends HttpServlet {
 
     private static final Logger logger = LogManager.getLogger(NumberOfPages.class);
 
@@ -26,8 +26,8 @@ public class NumberOfPages extends HttpServlet{
 
         String countQuery = "SELECT COUNT(username) as count FROM userdetails";
         Connection myConn = null;
-        PreparedStatement preparedStatement =null;
-        ResultSet resultSet =null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
         try {
             myConn = DBConnector.cpds.getConnection();
@@ -35,17 +35,17 @@ public class NumberOfPages extends HttpServlet{
             resultSet = preparedStatement.executeQuery();
             String numberOfRecords;
 
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 numberOfRecords = resultSet.getString("count");
-                out.println((int)Math.ceil(Double.parseDouble(numberOfRecords)/10));
+                out.println((int) Math.ceil(Double.parseDouble(numberOfRecords) / 10));
                 out.flush();
             }
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
+        } finally {
 
-            if (myConn != null){
+            if (myConn != null) {
                 try {
                     myConn.close();
                 } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class NumberOfPages extends HttpServlet{
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {
@@ -61,7 +61,7 @@ public class NumberOfPages extends HttpServlet{
                 }
             }
 
-            if (resultSet != null){
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {

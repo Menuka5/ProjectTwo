@@ -40,16 +40,19 @@
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="fname"><fmt:message key="registration.First"/> <fmt:message key="registration.Name"/></label>
+            <label class="col-md-4 control-label" for="fname"><fmt:message key="registration.First"/> <fmt:message
+                    key="registration.Name"/></label>
 
             <div class="col-md-5">
-                <input id="fname" name="fname" type="text" class="form-control input-md" required placeholder=<fmt:message key="registration.YourFirstName"/> >
+                <input id="fname" name="fname" type="text" class="form-control input-md" required placeholder=
+                    <fmt:message key="registration.YourFirstName"/>>
 
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="lname"><fmt:message key="registration.Last"/> <fmt:message key="registration.Name"/></label>
+            <label class="col-md-4 control-label" for="lname"><fmt:message key="registration.Last"/> <fmt:message
+                    key="registration.Name"/></label>
 
             <div class="col-md-5">
                 <input id="lname" name="lname" type="text" placeholder="Your Last Name" class="form-control input-md">
@@ -98,14 +101,16 @@
             <label class="col-md-4 control-label" for="email"><fmt:message key="registration.Email"/></label>
 
             <div class="col-md-5">
-                <input id="email" name="email" type="email" placeholder=<fmt:message key="registration.EmailPlaceHolder"/>"Type Your Email Here"
+                <input id="email" name="email" type="email"
+                       placeholder=<fmt:message key="registration.EmailPlaceHolder"/>"Type Your Email Here"
                        class="form-control input-md" value="menukcvffa@gmail.com" required="">
 
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="mnumber"><fmt:message key="registration.Mobile"/> <fmt:message key="registration.Number"/></label>
+            <label class="col-md-4 control-label" for="mnumber"><fmt:message key="registration.Mobile"/> <fmt:message
+                    key="registration.Number"/></label>
 
             <div class="col-md-5">
                 <input id="mnumber" name="mnumber" type="text" pattern="[0-9]{11}" placeholder="Your Mobile Number"
@@ -151,7 +156,8 @@
 
         <!-- Password input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="pass2"><fmt:message key="registration.Confirm"/> <fmt:message key="registration.Password"/></label>
+            <label class="col-md-4 control-label" for="pass2"><fmt:message key="registration.Confirm"/> <fmt:message
+                    key="registration.Password"/></label>
 
             <div class="col-md-5">
                 <input id="pass2" name="cpassword" type="password" placeholder="Confirm Your Password"
@@ -165,7 +171,8 @@
             <label class="col-md-4 control-label" for="sbtn"></label>
 
             <div class="col-md-4">
-                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()"><fmt:message key="top.Add"/> <fmt:message key="top.User"/></button>
+                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()"><fmt:message
+                        key="top.Add"/> <fmt:message key="top.User"/></button>
             </div>
         </div>
 

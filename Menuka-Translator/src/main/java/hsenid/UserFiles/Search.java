@@ -33,7 +33,7 @@ public class Search extends HttpServlet {
         String username = req.getParameter("searchword");
 
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
-        Connection myConn=null;
+        Connection myConn = null;
         JSONArray jsonArray = new JSONArray();
 
         try {
@@ -69,8 +69,8 @@ public class Search extends HttpServlet {
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (resultSet != null){
+        } finally {
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
@@ -78,7 +78,7 @@ public class Search extends HttpServlet {
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {

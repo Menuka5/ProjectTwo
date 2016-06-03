@@ -6,7 +6,8 @@
 <fmt:setLocale value="en"/>
 <fmt:bundle basename="Language">
 <head>
-    <title><fmt:message key="index.translator"/> <fmt:message key="index.login"/> <fmt:message key="index.page"/></title>
+    <title><fmt:message key="index.translator"/> <fmt:message key="index.login"/> <fmt:message
+            key="index.page"/></title>
 
 
 </head>
@@ -22,10 +23,10 @@
 <div class="login container-fluid">
 
     <div style="color: white; align-content: center">
-     <c:set var="s2" value='${requestScope["Error"]}' />
-     <c:if test="${not empty s2}">
-         <c:out value="${s2}"></c:out>
-     </c:if>
+        <c:set var="s2" value='${requestScope["Error"]}'/>
+        <c:if test="${not empty s2}">
+            <c:out value="${s2}"></c:out>
+        </c:if>
     </div>
     <div class="text-warning">
 
@@ -49,7 +50,8 @@
             </div>
             <div class="form-group">
 
-                <input id="submitButton" type="submit" class="btn btn-success btn-block" value=<fmt:message key="index.Login"/>>
+                <input id="submitButton" type="submit" class="btn btn-success btn-block" value=<fmt:message
+                        key="index.Login"/>>
 
 
             </div>

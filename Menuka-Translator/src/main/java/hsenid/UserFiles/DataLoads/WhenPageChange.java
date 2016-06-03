@@ -28,7 +28,7 @@ public class WhenPageChange extends HttpServlet {
         PrintWriter out = resp.getWriter();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        Connection myConn=null;
+        Connection myConn = null;
 
         JSONArray jsonArray = new JSONArray();
 
@@ -37,10 +37,9 @@ public class WhenPageChange extends HttpServlet {
         int realPageNumber = ((Integer.parseInt(pageNumber)) - 1) * 10;
 
 
-
         try {
             myConn = DBConnector.cpds.getConnection();
-            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id LIMIT "+ realPageNumber +", 10";
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id LIMIT " + realPageNumber + ", 10";
             logger.info(likeQuery);
 //            String likeQuery = "SELECT * FROM userdetails LIMIT 0, 10";
             preparedStatement = myConn.prepareStatement(likeQuery);
@@ -75,8 +74,8 @@ public class WhenPageChange extends HttpServlet {
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (myConn != null){
+        } finally {
+            if (myConn != null) {
                 try {
                     myConn.close();
                 } catch (SQLException e) {
@@ -84,7 +83,7 @@ public class WhenPageChange extends HttpServlet {
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {
@@ -92,7 +91,7 @@ public class WhenPageChange extends HttpServlet {
                 }
             }
 
-            if (resultSet != null){
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {

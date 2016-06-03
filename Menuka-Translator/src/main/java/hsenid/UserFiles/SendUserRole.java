@@ -51,8 +51,8 @@ public class SendUserRole extends HttpServlet {
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (myConn != null){
+        } finally {
+            if (myConn != null) {
                 try {
                     myConn.close();
                 } catch (SQLException e) {
@@ -60,7 +60,7 @@ public class SendUserRole extends HttpServlet {
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {
@@ -68,7 +68,7 @@ public class SendUserRole extends HttpServlet {
                 }
             }
 
-            if (resultSet != null){
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {

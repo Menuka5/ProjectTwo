@@ -4,7 +4,6 @@ import hsenid.DBConnector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +32,7 @@ public class SearchNumberOfPages extends HttpServlet {
         String username = req.getParameter("searchword");
 
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
-        Connection myConn=null;
+        Connection myConn = null;
         JSONArray jsonArray = new JSONArray();
 
         try {
@@ -45,10 +44,10 @@ public class SearchNumberOfPages extends HttpServlet {
 //            preparedStatement.setString(1, "%" + username + "%");
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 String preNum = resultSet.getString("count");
                 int number = Integer.parseInt(preNum);
-                int resultPages = (int) Math.ceil(number/10.0);
+                int resultPages = (int) Math.ceil(number / 10.0);
                 jsonArray.put(resultPages);
 //                out.println(jsonArray);
             }
@@ -78,8 +77,8 @@ public class SearchNumberOfPages extends HttpServlet {
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (resultSet != null){
+        } finally {
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
@@ -87,7 +86,7 @@ public class SearchNumberOfPages extends HttpServlet {
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {

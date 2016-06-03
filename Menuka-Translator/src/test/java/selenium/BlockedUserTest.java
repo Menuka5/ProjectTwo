@@ -14,20 +14,19 @@ public class BlockedUserTest {
 
     WebDriver driver;
 
-    @BeforeTest
-    public void starBrowser(){
-        driver = new FirefoxDriver();
-        driver.get("http://localhost:8080/Menuka-Translator/");
-    }
-
-
     @DataProvider(name = "LoginCredentials")
-    public static Object[][] correctLogins(){
+    public static Object[][] correctLogins() {
         return new Object[][]{
                 {"blocked", "blocked"},
                 {"test1", "aaa"},
                 {"datepicker", "123"}
         };
+    }
+
+    @BeforeTest
+    public void starBrowser() {
+        driver = new FirefoxDriver();
+        driver.get("http://localhost:8080/Menuka-Translator/");
     }
 
     @Test(dataProvider = "LoginCredentials", priority = 1)
@@ -59,7 +58,7 @@ public class BlockedUserTest {
 
 
     @AfterTest
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.quit();
     }
 }

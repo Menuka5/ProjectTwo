@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PermissionsSender extends HttpServlet{
+public class PermissionsSender extends HttpServlet {
     private final static Logger logger = LogManager.getLogger(PermissionsSender.class);
     public static Connection myConn;
 
@@ -25,10 +25,10 @@ public class PermissionsSender extends HttpServlet{
 
     }
 
-    public ArrayList<String> sendPermissions(String username){
-        PreparedStatement preparedStatement=null;
-        ResultSet resultSet=null;
-        String quary= "SELECT permission FROM userdetails INNER JOIN group_permission ON userdetails.group_id = group_permission.group_id INNER JOIN permissions ON permissions.permission_id = group_permission.permission_id WHERE userdetails.username = ?";
+    public ArrayList<String> sendPermissions(String username) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String quary = "SELECT permission FROM userdetails INNER JOIN group_permission ON userdetails.group_id = group_permission.group_id INNER JOIN permissions ON permissions.permission_id = group_permission.permission_id WHERE userdetails.username = ?";
         ArrayList<String> permissions = new ArrayList<String>();
 
 
@@ -38,7 +38,7 @@ public class PermissionsSender extends HttpServlet{
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 permissions.add(resultSet.getString("permission"));
             }
 
@@ -46,9 +46,9 @@ public class PermissionsSender extends HttpServlet{
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
+        } finally {
 
-            if (myConn != null){
+            if (myConn != null) {
                 try {
                     myConn.close();
                 } catch (SQLException e) {
@@ -56,7 +56,7 @@ public class PermissionsSender extends HttpServlet{
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class PermissionsSender extends HttpServlet{
                 }
             }
 
-            if (resultSet != null){
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {

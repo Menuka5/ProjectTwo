@@ -52,15 +52,15 @@ public class CitySender extends HttpServlet {
             logger.info("Out of while loop");
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (myConn != null){
+        } finally {
+            if (myConn != null) {
                 try {
                     myConn.close();
                 } catch (SQLException e) {
                     logger.error(e.getMessage());
                 }
             }
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {
@@ -68,7 +68,7 @@ public class CitySender extends HttpServlet {
                 }
             }
 
-            if (resultSet != null){
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {

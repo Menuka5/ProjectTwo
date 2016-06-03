@@ -13,6 +13,38 @@ import org.testng.annotations.Test;
 public class LoginPageTest {
     WebDriver driver;
 
+    @DataProvider(name = "LoginCredentials")
+    public static Object[][] correctLogins() {
+        return new Object[][]{
+                {"test", "test123"},
+                {"conflict", "conflict"},
+                {"help", "help"},
+                {"hulk", "hulk"}
+        };
+    }
+
+    @DataProvider(name = "invaliedCredentials")
+    public static Object[][] invaliedLogincredentials() {
+        return new Object[][]{
+                {"kdfjnb", "4nf7v6f"},
+                {"", ""},
+                {"", "test"},
+                {"", "5ddf9898xc5v"},
+                {"test", ""},
+                {"test", "jnfkjasnf"},
+                {"fjdhva", "dfsdjfkas"},
+                {"4544848", "fgfdasgsdf"},
+                {"6544875", "898484514"},
+                {"fbmnvcx", "484654564564"},
+                {"*&^$#^(*_(", "vsdvdfgv"},
+                {"+__()&^$#@@$", "5154844544"},
+                {"#$%%$$%^$$^&*()", ""},
+                {"&&&&*****", "+_)*(&^^"},
+                {"^*&^%$%^&*(", "hfhffhahhvsdv"}
+        };
+
+    }
+
     @BeforeTest
     public void starBrowser() {
         driver = new FirefoxDriver();
@@ -25,16 +57,6 @@ public class LoginPageTest {
         String actualTitle = driver.getTitle();
         Assert.assertEquals(expectedTitle, actualTitle);
 //        driver.close();
-    }
-
-    @DataProvider(name = "LoginCredentials")
-    public static Object[][] correctLogins() {
-        return new Object[][]{
-                {"test", "test123"},
-                {"conflict", "conflict"},
-                {"help", "help"},
-                {"hulk", "hulk"}
-        };
     }
 
     @Test(dataProvider = "LoginCredentials", priority = 1)
@@ -59,34 +81,11 @@ public class LoginPageTest {
 //        Thread.sleep(1000);
         WebElement element = driver.findElement(By.id("submitButton"));
         element.click();
-
+//        Thread.sleep(1000);
         Assert.assertEquals(driver.getTitle(), actualTitle);
 
-        WebElement logout = driver.findElement(By.id("logout"));
-        logout.click();
-
-    }
-
-
-    @DataProvider(name = "invaliedCredentials")
-    public static Object[][] invaliedLogincredentials() {
-        return new Object[][]{
-                {"kdfjnb", "4nf7v6f"},
-                {"", ""},
-                {"", "test"},
-                {"", "5ddf9898xc5v"},
-                {"test", ""},
-                {"test", "jnfkjasnf"},
-                {"fjdhva", "dfsdjfkas"},
-                {"4544848", "fgfdasgsdf"},
-                {"6544875", "898484514"},
-                {"fbmnvcx", "484654564564"},
-                {"*&^$#^(*_(", "vsdvdfgv"},
-                {"+__()&^$#@@$", "5154844544"},
-                {"#$%%$$%^$$^&*()", ""},
-                {"&&&&*****", "+_)*(&^^"},
-                {"^*&^%$%^&*(", "hfhffhahhvsdv"}
-        };
+//        WebElement logout = driver.findElement(By.id("logout"));
+        driver.findElement(By.id("logoutbtn")).click();
 
     }
 
@@ -117,7 +116,7 @@ public class LoginPageTest {
 
         boolean state = false;
 
-        if (actualTitle.equals(expectedTitle) && actualUrl.equals(expecteUrl)){
+        if (actualTitle.equals(expectedTitle) && actualUrl.equals(expecteUrl)) {
             state = true;
         }
 

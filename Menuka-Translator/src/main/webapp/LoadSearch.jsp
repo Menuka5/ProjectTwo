@@ -227,12 +227,16 @@
 
 <c:if test="${checkEditUser}">
     <script>
-        setTimeout(function(){ $('#table').bootstrapTable('showColumn', 'operate'); }, 100);
+        setTimeout(function () {
+            $('#table').bootstrapTable('showColumn', 'operate');
+        }, 100);
     </script>
 </c:if>
 <c:if test="${checkDeleteUser}">
     <script>
-        setTimeout(function(){ $('#table').bootstrapTable('showColumn', 'operate2'); }, 100);
+        setTimeout(function () {
+            $('#table').bootstrapTable('showColumn', 'operate2');
+        }, 100);
     </script>
 
 </c:if>

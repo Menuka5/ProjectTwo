@@ -23,9 +23,9 @@
     <table id="table"></table>
 </div>
 
-<button >visible</button>
+<button>visible</button>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         $.ajax({
 
@@ -44,8 +44,8 @@
             }
         })
 
-            $('#table').bootstrapTable('showColumn', 'operate');
-            $('#table').bootstrapTable('hideColumn', 'city');
+        $('#table').bootstrapTable('showColumn', 'operate');
+        $('#table').bootstrapTable('hideColumn', 'city');
     });
 </script>
 </body>

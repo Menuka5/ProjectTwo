@@ -37,7 +37,6 @@ $(document).ready(function () {
 });
 
 
-
 $(document).ready(function () {
 
 
@@ -158,11 +157,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
-
     var numberOfPages;
     $.ajax({
 
@@ -207,7 +201,7 @@ $(document).ready(function () {
 
                 // called when a page is changed.
 
-                pageChange: function(page) {
+                pageChange: function (page) {
                     //alert(page);
                     $.ajax({
                         // The URL for the request
@@ -219,11 +213,13 @@ $(document).ready(function () {
                         // Whether this is a POST or GET request
                         type: "GET",
                         // The type of data we expect back
-                        dataType : "json",
+                        dataType: "json",
                         success: function (data2) {
                             $('#table').bootstrapTable('load', data2);
                         },
-                        error: function(data){ alert("Page load failed serverside.js") }
+                        error: function (data) {
+                            alert("Page load failed serverside.js")
+                        }
                     })
                 }
             });
@@ -415,7 +411,7 @@ $(document).ready(function () {
 
                     // called when a page is changed.
 
-                    pageChange: function(page) {
+                    pageChange: function (page) {
                         //alert(page);
                         $.ajax({
                             // The URL for the request
@@ -427,11 +423,13 @@ $(document).ready(function () {
                             // Whether this is a POST or GET request
                             type: "GET",
                             // The type of data we expect back
-                            dataType : "json",
+                            dataType: "json",
                             success: function (data2) {
                                 $('#table').bootstrapTable('load', data2);
                             },
-                            error: function(data){ alert("Page load failed serverside.js") }
+                            error: function (data) {
+                                alert("Page load failed serverside.js")
+                            }
                         })
                     }
                 });

@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SearchWhenPageChange extends HttpServlet{
+public class SearchWhenPageChange extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(SearchWhenPageChange.class);
 
     @Override
@@ -33,12 +33,12 @@ public class SearchWhenPageChange extends HttpServlet{
         int realPageNumber = ((Integer.parseInt(pageNumber)) - 1) * 10;
 
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
-        Connection myConn=null;
+        Connection myConn = null;
         JSONArray jsonArray = new JSONArray();
 
         try {
             myConn = dbpool.getConn();
-            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE ? Limit "+ realPageNumber +", 10";
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id LEFT JOIN city ON userdetails.city_id=city.city_id WHERE username LIKE ? Limit " + realPageNumber + ", 10";
 
             preparedStatement = myConn.prepareStatement(likeQuery);
             preparedStatement.setString(1, "%" + username + "%");
@@ -69,8 +69,8 @@ public class SearchWhenPageChange extends HttpServlet{
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (resultSet != null){
+        } finally {
+            if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
@@ -78,7 +78,7 @@ public class SearchWhenPageChange extends HttpServlet{
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {

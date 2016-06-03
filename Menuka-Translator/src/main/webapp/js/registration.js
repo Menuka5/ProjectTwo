@@ -21,7 +21,6 @@ function confirmPass() {
 }
 
 
-
 //Ajax call to get city list
 
 $(document).ready(function () {
@@ -63,7 +62,6 @@ $(document).ready(function () {
 //Username checking
 
 
-
 $(document).ready(function () {
     $("#username").blur(function () {
         var uname = $("#username").val();
@@ -100,7 +98,6 @@ $(document).ready(function () {
 });
 
 
-
 //User role sending function
 
 $(document).ready(function () {
@@ -131,7 +128,7 @@ $(document).ready(function () {
 
 function operateFormatter(value, row, index) {
     return [
-        '<a class="remove ml10 btn btn-danger btn-large" href="javascript:void(0)" title="Remove">','Delete',
+        '<a class="remove ml10 btn btn-danger btn-large" href="javascript:void(0)" title="Remove">', 'Delete',
         '<i class="glyphicon glyphicon-remove"></i>',
         '</a>'
     ].join('');

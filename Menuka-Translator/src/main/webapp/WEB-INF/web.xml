@@ -3,8 +3,8 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app
-        xmlns="http://java.sun.com/xml/ns/javaee"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://java.sun.com/xml/ns/javaee"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         version="2.5">
     <display-name>Archetype Created Web Application</display-name>
@@ -102,7 +102,7 @@
         <servlet-name>SendUserRole</servlet-name>
         <url-pattern>/SendUserRole</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>hsenid.UserFiles.DeleteUser</servlet-class>
@@ -111,7 +111,7 @@
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/DeleteUser</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>UpdateUser</servlet-name>
         <servlet-class>hsenid.UserFiles.UpdateUser</servlet-class>
@@ -120,7 +120,7 @@
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>FirstDataLoad</servlet-name>
         <servlet-class>hsenid.UserFiles.DataLoads.FirstDataLoad</servlet-class>
@@ -129,7 +129,7 @@
         <servlet-name>FirstDataLoad</servlet-name>
         <url-pattern>/FirstDataLoad</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>NumberOfPages</servlet-name>
         <servlet-class>hsenid.UserFiles.DataLoads.NumberOfPages</servlet-class>
@@ -138,7 +138,7 @@
         <servlet-name>NumberOfPages</servlet-name>
         <url-pattern>/NumberOfPages</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>WhenPageChange</servlet-name>
         <servlet-class>hsenid.UserFiles.DataLoads.WhenPageChange</servlet-class>

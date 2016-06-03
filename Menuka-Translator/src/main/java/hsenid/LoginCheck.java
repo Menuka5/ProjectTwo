@@ -27,7 +27,7 @@ public class LoginCheck {
         logger.info("LoginCheck, Checking Login Credentials");
         boolean returnValur = false;
         ResultSet rs;
-        ResultSet resultSet=null;
+        ResultSet resultSet = null;
         PreparedStatement preparedStatement;
 
 

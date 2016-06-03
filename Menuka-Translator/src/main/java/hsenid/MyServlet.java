@@ -38,9 +38,9 @@ public class MyServlet extends HttpServlet {
         PreparedStatement pst = null;
         ResultSet rs = null;
         Boolean status = false;
-        Connection myConn=null;
-        PreparedStatement preparedStatement=null;
-        ResultSet resultSet=null;
+        Connection myConn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
 
         // Getting parameters
@@ -67,13 +67,13 @@ public class MyServlet extends HttpServlet {
                     preparedStatement = myConn.prepareStatement(query);
                     preparedStatement.setString(1, username);
                     resultSet = preparedStatement.executeQuery();
-                    if (resultSet.next()){
+                    if (resultSet.next()) {
                         logger.error("Blocked User Entered ");
-                            String group_id = resultSet.getString("group_id");
-                            if (group_id.equals("4")){
-                                logger.error("User's Access is denied");
-                                request.getRequestDispatcher("/Alerts/BlockedUserAlert.jsp").forward(request, resp);
-                            }
+                        String group_id = resultSet.getString("group_id");
+                        if (group_id.equals("4")) {
+                            logger.error("User's Access is denied");
+                            request.getRequestDispatcher("/Alerts/BlockedUserAlert.jsp").forward(request, resp);
+                        }
                     }
                     PermissionsSender permissionsSender = new PermissionsSender();
                     ArrayList<String> permissions = permissionsSender.sendPermissions(username);

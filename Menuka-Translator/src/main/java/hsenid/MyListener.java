@@ -42,7 +42,7 @@ public class MyListener implements ServletContextListener {
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        if (db.cpds != null){
+        if (db.cpds != null) {
             db.cpds.close();
         }
     }

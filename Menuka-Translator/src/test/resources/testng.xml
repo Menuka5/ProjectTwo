@@ -9,6 +9,7 @@
             <class name="selenium.LoginPageTest"/>
             <class name="selenium.BlockedUserTest"/>
             <class name="selenium.TranslatorPageTest"/>
+            <class name="selenium.CustomerCareTest"/>
         </classes>
 
     </test>

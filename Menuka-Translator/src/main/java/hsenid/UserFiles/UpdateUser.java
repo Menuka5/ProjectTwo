@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class UpdateUser extends HttpServlet{
+public class UpdateUser extends HttpServlet {
     private final static Logger logger = LogManager.getLogger(UpdateUser.class);
 
     @Override
@@ -32,10 +32,11 @@ public class UpdateUser extends HttpServlet{
         String email = request.getParameter("email");
         long mnumber = Long.parseLong(request.getParameter("mnumber"));
         String city_id = request.getParameter("states");
-        String username = request.getParameter("username");;
+        String username = request.getParameter("username");
+        ;
 
-        Connection myConn=null;
-        PreparedStatement preparedStatement=null;
+        Connection myConn = null;
+        PreparedStatement preparedStatement = null;
 
         String query = "UPDATE userdetails SET fname=?, lname=?, dob=?, country=?, email=?, city_id=?, mnumber=?, group_id=?  WHERE username=?;";
 

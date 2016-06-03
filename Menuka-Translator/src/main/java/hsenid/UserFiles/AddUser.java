@@ -40,8 +40,8 @@ public class AddUser extends HttpServlet {
         String city_id = request.getParameter("states");
         String password = null;
 
-        Connection myConn=null;
-        PreparedStatement preparedStatement=null;
+        Connection myConn = null;
+        PreparedStatement preparedStatement = null;
 
         String query = "insert into userdetails (fname, lname, dob, country, email, mnumber, username, password, city_id, group_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -68,8 +68,8 @@ public class AddUser extends HttpServlet {
             logger.error(e.getMessage());
         } catch (NoSuchAlgorithmException e) {
             logger.error(e.getMessage());
-        }finally {
-            if (myConn != null){
+        } finally {
+            if (myConn != null) {
                 try {
                     myConn.close();
                 } catch (SQLException e) {
@@ -77,7 +77,7 @@ public class AddUser extends HttpServlet {
                 }
             }
 
-            if (preparedStatement != null){
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {

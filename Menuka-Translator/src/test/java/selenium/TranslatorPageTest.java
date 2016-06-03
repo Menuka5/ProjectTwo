@@ -20,8 +20,8 @@ public class TranslatorPageTest {
         driver.get("http://localhost:8080/Menuka-Translator/");
     }
 
-    @DataProvider(name = "CustomerCareLogins")
-    public Object[][] sendCustomerCare(){
+    @DataProvider(name = "TranslatorLogins")
+    public Object[][] sendCustomerCare() {
         return new Object[][]{
                 {"test2", "aaa"},
                 {"test122", "123"},
@@ -33,7 +33,7 @@ public class TranslatorPageTest {
         };
     }
 
-    @Test(dataProvider = "CustomerCareLogins")
+    @Test(dataProvider = "TranslatorLogins")
     public void menuTestTranslatorTranslate(String username, String password) {
 
         WebElement usernameClear = driver.findElement(By.name("username"));
@@ -49,13 +49,14 @@ public class TranslatorPageTest {
         element.click();
 //        Thread.sleep(2000);
 
-        WebElement Translator =driver.findElement(By.id("Translate"));
-        boolean  ttt = Translator.isDisplayed();
+        WebElement Translator = driver.findElement(By.id("Translate"));
+        boolean ttt = Translator.isDisplayed();
 
-        Assert.assertEquals(true, ttt);
+        Assert.assertTrue(ttt);
         driver.get("http://localhost:8080/Menuka-Translator/");
 
     }
+
 
     @AfterTest
     public void closeBrowser() {

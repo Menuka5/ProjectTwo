@@ -43,7 +43,7 @@
 
     <div id="logout">
         <form action="LogOut">
-            <input type="submit" class="btn btn-danger" id="logout" value=<fmt:message key="translate.Logout"/>>
+            <input type="submit" class="btn btn-danger" id="logoutbtn" value=<fmt:message key="translate.Logout"/>>
         </form>
 
     </div>
@@ -83,7 +83,7 @@
                     I used "selected" attributes to store the selected values when page refreshes.
                     --%>
 
-                    <c:set var="frm" value='${requestScope["from"]}' />
+                    <c:set var="frm" value='${requestScope["from"]}'/>
                     <c:forEach var="vals" items="${values}">
                         <%--<option>${vals}</option>--%>
                         <c:choose>
@@ -122,7 +122,7 @@
 					</textarea>
 
                 <select name="to">
-                    <c:set var="tot" value='${requestScope["to"]}' />
+                    <c:set var="tot" value='${requestScope["to"]}'/>
                     <c:forEach var="valsto" items="${values}">
                         <c:choose>
                             <c:when test="${valsto eq tot}">

@@ -37,7 +37,6 @@ $(document).ready(function () {
 });
 
 
-
 $(document).ready(function () {
 
     $.ajax({
@@ -162,17 +161,16 @@ $(document).ready(function () {
 //Delete Edit Button Configuration
 
 
-
 function operateFormatter(value, row, index) {
     return [
-        '<a class="edit ml10 btn btn-danger" href="javascript:void(0)" title="Edit">','Edit ',
+        '<a class="edit ml10 btn btn-danger" href="javascript:void(0)" title="Edit">', 'Edit ',
         '<i class="glyphicon glyphicon-edit"></i>',
         '</a>'
     ].join('');
 }
 function operateFormatter2(value, row, index) {
     return [
-        '<a class="remove ml10 btn btn-danger" href="javascript:void(0)" title="Remove">','Delete ',
+        '<a class="remove ml10 btn btn-danger" href="javascript:void(0)" title="Remove">', 'Delete ',
         '<i class="glyphicon glyphicon-remove"></i>',
         '</a>'
     ].join('');
@@ -216,9 +214,9 @@ window.operateEvents = {
                 //Set the Current user sity as default selected option in edit user
                 for (var i = 0; i < data2.length; i++) {
                     //alert()
-                    if(data2[i].city_id == datarecieve.cityId){
+                    if (data2[i].city_id == datarecieve.cityId) {
                         $("#states").append('<option value=' + data2[i].city_id + ' selected >' + data2[i].city + '</option>');
-                    }else{
+                    } else {
                         $("#states").append('<option value=' + data2[i].city_id + ' >' + data2[i].city + '</option>');
                     }
                 }
@@ -251,9 +249,9 @@ window.operateEvents = {
                 //Set the Current user sity as default selected option in edit user
                 for (var i = 0; i < data2.length; i++) {
                     //alert(data2[i].group_id + data2[i].group_name );
-                    if(data2[i].group_name == datarecieve.userRole){
+                    if (data2[i].group_name == datarecieve.userRole) {
                         $("#userRole").append('<option value=' + data2[i].group_id + ' selected >' + data2[i].group_name + '</option>');
-                    }else{
+                    } else {
                         $("#userRole").append('<option value=' + data2[i].group_id + ' >' + data2[i].group_name + '</option>');
                     }
                 }
@@ -283,8 +281,8 @@ window.operateEvents = {
 
 //Search User
 
-$(document).ready(function(){
-    $("#bn1").click(function(){
+$(document).ready(function () {
+    $("#bn1").click(function () {
         var searchdata = $("#search").val();
         $.ajax({
             // The URL for the request
@@ -296,11 +294,13 @@ $(document).ready(function(){
             // Whether this is a POST or GET request
             type: "GET",
             // The type of data we expect back
-            dataType : "json",
+            dataType: "json",
             success: function (data2) {
                 $('#table').bootstrapTable('load', data2);
             },
-            error: function(data){ console.log(data); }
+            error: function (data) {
+                console.log(data);
+            }
         })
     });
 });
@@ -328,7 +328,7 @@ $(document).ready(function () {
 
             // The type of data we expect back
             success: function (data2) {
-                alert("User " + deleteUser +" Successfully deleted!!!");
+                alert("User " + deleteUser + " Successfully deleted!!!");
             },
             error: function (data) {
                 console.log(data);
