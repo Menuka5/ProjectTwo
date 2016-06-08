@@ -1,5 +1,6 @@
 package selenium;
 
+import hsenid.PropertyHandle;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,14 +11,22 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class TranslatorPageTest {
 
     WebDriver driver;
 
+    PropertyHandle getUrl;
+
+    public TranslatorPageTest() throws IOException {
+        getUrl = new PropertyHandle();
+    }
+
     @BeforeTest
     public void starBrowser() {
         driver = new FirefoxDriver();
-        driver.get("http://localhost:8080/Menuka-Translator/");
+        driver.get(getUrl.getSeleniumUrl());
     }
 
     @DataProvider(name = "TranslatorLogins")
@@ -53,7 +62,7 @@ public class TranslatorPageTest {
         boolean ttt = Translator.isDisplayed();
 
         Assert.assertTrue(ttt);
-        driver.get("http://localhost:8080/Menuka-Translator/");
+        driver.get(getUrl.getSeleniumUrl());
 
     }
 

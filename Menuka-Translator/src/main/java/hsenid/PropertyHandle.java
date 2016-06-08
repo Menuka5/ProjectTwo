@@ -14,6 +14,7 @@ public class PropertyHandle {
     private String password;
     private String dbDriver;
     private String yandexUrl;
+    private String seleniumUrl;
 
 
     public PropertyHandle() throws IOException {
@@ -27,6 +28,7 @@ public class PropertyHandle {
         this.password = configProp.getProperty("db.password");
         this.dbDriver = configProp.getProperty("db.driver");
         this.yandexUrl = configProp.getProperty("yandex.url");
+        this.seleniumUrl = configProp.getProperty("selenium.address");
         logger.info("Recieved the data from the config.properties");
     }
 
@@ -53,6 +55,11 @@ public class PropertyHandle {
     public String getYandexUrl() {
         logger.info("Yandex.Language list called");
         return yandexUrl;
+    }
+
+    public String getSeleniumUrl() {
+        logger.info("Selenium Test Url called");
+        return seleniumUrl;
     }
 }
 

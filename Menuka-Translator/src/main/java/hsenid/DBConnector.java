@@ -40,9 +40,9 @@ public class DBConnector {
             cpds.setPassword(data.getPassword());
 
             //Setting pooling configurations
-            cpds.setMinPoolSize(10);
+            cpds.setMinPoolSize(15);
             cpds.setAcquireIncrement(5);
-            cpds.setMaxPoolSize(30);
+            cpds.setMaxPoolSize(600);
 
         } catch (IOException e) {
             logger.error(e.getMessage());

@@ -1,7 +1,7 @@
 package selenium;
 
 
-import com.sun.deploy.util.StringUtils;
+import hsenid.PropertyHandle;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,16 +11,23 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.List;
 
 public class TranslationTest {
     WebDriver driver;
 
+
+    PropertyHandle getUrl;
+
+    public TranslationTest() throws IOException {
+        getUrl = new PropertyHandle();
+    }
+
     @BeforeTest
     public void starBrowser() {
         driver = new FirefoxDriver();
-        driver.get("http://localhost:8080/Menuka-Translator/");
+        driver.get(getUrl.getSeleniumUrl());
 
         WebElement usernameClear = driver.findElement(By.name("username"));
         usernameClear.clear();
@@ -43,7 +50,7 @@ public class TranslationTest {
     }
 
     @DataProvider(name = "translateInfo")
-    public Object[][] sendTranslateDetails(){
+    public Object[][] sendTranslateDetails() {
         return new Object[][]{
                 {"English", "Latin", "Always Faithful", "Semper Fidelis"},
                 {"French", "English", "paix", "peace"},
@@ -54,7 +61,7 @@ public class TranslationTest {
 
 
     @Test(dataProvider = "translateInfo")
-    public void TranslationTest(String fromLangs, String toLang, String wordtotranslate, String expectedOutput){
+    public void TranslationTest(String fromLangs, String toLang, String wordtotranslate, String expectedOutput) {
 
 //        driver.get("http://localhost:8080/Menuka-Translator/");
 
@@ -68,8 +75,8 @@ public class TranslationTest {
 
         WebElement select = driver.findElement(By.name("to"));
         List<WebElement> options = select.findElements(By.tagName("option"));
-        for(WebElement option2 : options){
-            if(option2.getText().equals(toLang)){
+        for (WebElement option2 : options) {
+            if (option2.getText().equals(toLang)) {
                 option2.click();
                 break;
             }
@@ -92,21 +99,21 @@ public class TranslationTest {
     }
 
 
-    public String modifyString(String tobeModify){
+    public String modifyString(String tobeModify) {
         tobeModify = tobeModify.trim();
-        String[] store =  tobeModify.split("\\s+");
+        String[] store = tobeModify.split("\\s+");
 //        String[] newArray = Arrays.copyOfRange(store, 0, store.length);
 
 
 //        System.out.println(store[0]+ " " + store[1]);
 
-        String output=null;
+        String output = null;
 
-        if (store.length == 0){
+        if (store.length == 0) {
             output = "";
-        }else if (store.length == 1){
+        } else if (store.length == 1) {
             output = store[0];
-        }else {
+        } else {
             output = String.join(",", store);
         }
 

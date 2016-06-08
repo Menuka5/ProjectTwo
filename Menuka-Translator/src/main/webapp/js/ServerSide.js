@@ -3,21 +3,16 @@
 $(document).ready(function () {
     $("#country").change(function () {
         var country = $("#country").val();
-        //alert(country);
         $.ajax({
 
-            // The URL for the request
             url: "CitySender",
 
-            // The data to send (will be converted to a query string)
             data: {
                 country: country
             },
 
-            // Whether this is a POST or GET request
             type: "GET",
 
-            // The type of data we expect back
             dataType: "json",
             success: function (data2) {
                 $("#states").empty();
@@ -26,8 +21,6 @@ $(document).ready(function () {
 
                     $("#states").append('<option value=' + obj.city_id + '>' + obj.city + '</option>');
                 }
-
-
             },
             error: function (data) {
                 console.log(data);
@@ -39,16 +32,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-
     $.ajax({
-
-        // The URL for the request
         url: "FirstDataLoad",
-
-        // Whether this is a POST or GET request
         type: "GET",
-
-        // The type of data we expect back
         dataType: "json",
         success: function (data2) {
 
@@ -68,14 +54,12 @@ $(document).ready(function () {
                     field: 'firstName',
                     title: 'First Name',
                     align: 'left',
-                    //visible: false,
                     valign: 'bottom',
                     sortable: true
                 }, {
                     field: 'lastName',
                     title: 'Last Name',
                     align: 'left',
-                    //visible: false,
                     valign: 'middle',
                     sortable: true,
 
@@ -159,60 +143,26 @@ $(document).ready(function () {
 
     var numberOfPages;
     $.ajax({
-
-        // The URL for the request
         url: "NumberOfPages",
-
-        // Whether this is a POST or GET request
         type: "GET",
-
         success: function (data2) {
-
             numberOfPages = data2;
-            //alert(numberOfPages);pagination
-
             var pag = $('#pagination').simplePaginator({
-
-                // the number of total pages
-                //alert("fkdsjflksf");
                 totalPages: parseInt(numberOfPages),
-
-                // maximum of visible buttons
-
                 maxButtonsVisible: 5,
-
-                // page selected
-
                 currentPage: 1,
-
-                // text labels for buttons
-
                 nextLabel: 'next',
-
                 prevLabel: 'prev',
-
                 firstLabel: 'first',
-
                 lastLabel: 'last',
-
-                // specify if the paginator click in the currentButton
-
                 clickCurrentPage: true,
-
-                // called when a page is changed.
-
                 pageChange: function (page) {
-                    //alert(page);
                     $.ajax({
-                        // The URL for the request
                         url: "WhenPageChange",
-                        // The data to send (will be converted to a query string)
                         data: {
                             pageNumber: page
                         },
-                        // Whether this is a POST or GET request
                         type: "GET",
-                        // The type of data we expect back
                         dataType: "json",
                         success: function (data2) {
                             $('#table').bootstrapTable('load', data2);
@@ -233,10 +183,6 @@ $(document).ready(function () {
     });
 
 });
-
-
-//Delete Edit Button Configuration
-
 
 function operateFormatter(value, row, index) {
     return [
@@ -268,29 +214,16 @@ window.operateEvents = {
         $("#date").val(datarecieve.dob);
 
         var country = datarecieve.country;
-        // Setting the City Option menu
         $.ajax({
-
-            // The URL for the request
             url: "CitySender",
-
-            // The data to send (will be converted to a query string)
             data: {
                 country: country
             },
-
-            // Whether this is a POST or GET request
             type: "GET",
-
-            // The type of data we expect back
             dataType: "json",
             success: function (data2) {
-
                 $("#states").empty();
-
-                //Set the Current user sity as default selected option in edit user
                 for (var i = 0; i < data2.length; i++) {
-                    //alert()
                     if (data2[i].city_id == datarecieve.cityId) {
                         $("#states").append('<option value=' + data2[i].city_id + ' selected >' + data2[i].city + '</option>');
                     } else {
@@ -303,45 +236,25 @@ window.operateEvents = {
             error: function (data) {
                 console.log(data);
             }
-
         });
-
-
-        //Setting the role of the user
-
         $.ajax({
-
-            // The URL for the request
             url: "SendUserRole",
-
-            // Whether this is a POST or GET request
             type: "GET",
-
-            // The type of data we expect back
             dataType: "json",
             success: function (data2) {
-
-                //$("#states").empty();
-
-                //Set the Current user sity as default selected option in edit user
                 for (var i = 0; i < data2.length; i++) {
-                    //alert(data2[i].group_id + data2[i].group_name );
                     if (data2[i].group_name == datarecieve.userRole) {
                         $("#userRole").append('<option value=' + data2[i].group_id + ' selected >' + data2[i].group_name + '</option>');
                     } else {
                         $("#userRole").append('<option value=' + data2[i].group_id + ' >' + data2[i].group_name + '</option>');
                     }
                 }
-
-
             },
             error: function (data) {
                 console.log(data);
             }
 
         });
-
-
         $("#updateUserProfile").modal("show");
 
     },
@@ -354,75 +267,35 @@ window.operateEvents = {
         $("#deleteUser").modal("show");
     }
 };
-
-
 //Search User
-
 $(document).ready(function () {
     $("#bn1").click(function () {
         var searchdata = $("#search").val();
         $("#pagination").hide();
-
         $.ajax({
-
-            // The URL for the request
             url: "SearchNumberOfPages",
-
-            // Whether this is a POST or GET request
             type: "GET",
-
             data: {
                 searchword: searchdata
             },
-
             success: function (data2) {
-
                 numberOfPages = parseInt(data2[0]);
-                //alert(numberOfPages);pagination
-                //alert(numberOfPages);
-
                 var pag = $('#pagination2').simplePaginator({
-
-                    // the number of total pages
-                    //alert("fkdsjflksf");
                     totalPages: parseInt(numberOfPages),
-
-                    // maximum of visible buttons
-
                     maxButtonsVisible: 5,
-
-                    // page selected
-
                     currentPage: 1,
-
-                    // text labels for buttons
-
                     nextLabel: 'next',
-
                     prevLabel: 'prev',
-
                     firstLabel: 'first',
-
                     lastLabel: 'last',
-
-                    // specify if the paginator click in the currentButton
-
                     clickCurrentPage: true,
-
-                    // called when a page is changed.
-
                     pageChange: function (page) {
-                        //alert(page);
                         $.ajax({
-                            // The URL for the request
                             url: "SearchWhenPageChange",
-                            // The data to send (will be converted to a query string)
                             data: {
                                 pageNumber: page
                             },
-                            // Whether this is a POST or GET request
                             type: "GET",
-                            // The type of data we expect back
                             dataType: "json",
                             success: function (data2) {
                                 $('#table').bootstrapTable('load', data2);
@@ -433,8 +306,6 @@ $(document).ready(function () {
                         })
                     }
                 });
-
-
             },
             error: function (data) {
                 console.log(data);
@@ -444,15 +315,11 @@ $(document).ready(function () {
 
 
         $.ajax({
-            // The URL for the request
             url: "Search",
-            // The data to send (will be converted to a query string)
             data: {
                 searchword: searchdata
             },
-            // Whether this is a POST or GET request
             type: "GET",
-            // The type of data we expect back
             dataType: "json",
             success: function (data2) {
                 $('#table').bootstrapTable('load', data2);
@@ -463,29 +330,16 @@ $(document).ready(function () {
         });
     });
 });
-
-
 //delete User
-
 $(document).ready(function () {
-
     $("#deleteUserData").click(function () {
         var deleteUser = $("#username2").text();
-        //alert(deleteUser);
         $.ajax({
-
-            // The URL for the request
             url: "DeleteUser",
-
-            // The data to send (will be converted to a query string)
             data: {
                 delete: deleteUser
             },
-
-            // Whether this is a POST or GET request
             type: "GET",
-
-            // The type of data we expect back
             success: function (data2) {
                 alert("User " + deleteUser + " Successfully deleted!!!");
             },
@@ -496,6 +350,3 @@ $(document).ready(function () {
 
     });
 });
-
-
-

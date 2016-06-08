@@ -194,6 +194,8 @@
 
     };
     date_input.datepicker(options);
+
+    $('#date').datepicker("show");
 </script>
 
 </fmt:bundle>

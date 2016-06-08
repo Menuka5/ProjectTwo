@@ -1,5 +1,6 @@
 package selenium;
 
+import hsenid.PropertyHandle;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +11,15 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class LoginPageTest {
     WebDriver driver;
+    PropertyHandle getUrl;
+
+    public LoginPageTest() throws IOException {
+        getUrl = new PropertyHandle();
+    }
 
     @DataProvider(name = "LoginCredentials")
     public static Object[][] correctLogins() {
@@ -48,7 +56,7 @@ public class LoginPageTest {
     @BeforeTest
     public void starBrowser() {
         driver = new FirefoxDriver();
-        driver.get("http://localhost:8080/Menuka-Translator/");
+        driver.get(getUrl.getSeleniumUrl());
     }
 
     @Test(priority = 0)

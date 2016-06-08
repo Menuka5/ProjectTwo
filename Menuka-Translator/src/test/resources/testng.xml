@@ -10,7 +10,7 @@
             <class name="selenium.BlockedUserTest"/>
             <class name="selenium.TranslatorPageTest"/>
             <class name="selenium.CustomerCareTest"/>
+            <class name="selenium.AddUserTest"/>
         </classes>
-
     </test>
 </suite>
